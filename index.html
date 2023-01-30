@@ -6,6 +6,10 @@
       pre {
         background-color: lightgray;
         padding: 10px;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
       }
     </style>
   </head>
@@ -18,14 +22,14 @@
                    8: '8', 9: '9', 10: 'A', 11: 'B',
                    12: 'C', 13: 'D', 14: 'E', 15: 'F'}
           result = ""
-          print("This is decimal to something")
-          numbersystem = int(input("Input numbersystem (no bigger than 16): "))
-          number = int(input("Input decimal number: "))
+          print("This is the decimal to something conversion")
+          numbersystem = int(input("Enter the number system to convert to (no bigger than 16): "))
+          number = int(input("Enter the decimal number to convert: "))
           while number > 0:
               reminder = number % numbersystem
               result = table[reminder] + result
               number = number // numbersystem
-          print(result)
+          print("The result is:", result)
       
       def something_to_dec():
           table = {'0': 0, '1': 1, '2': 2, '3': 3,
@@ -33,14 +37,14 @@
                    '8': 8, '9': 9, 'A': 10, 'B': 11,
                    'C': 12, 'D': 13, 'E': 14, 'F': 15}
           result = 0
-          print("This is from something to decimal")
-          numbersystem = int(input("Input numbersystem (no bigger than 16): "))
-          number = input("Input number: ")
+          print("This is the something to decimal conversion")
+          numbersystem = int(input("Enter the number system to convert from (no bigger than 16): "))
+          number = input("Enter the number to convert: ")
           exponent = len(number) -1
           for i in number:
               result = result + table[i] *numbersystem ** exponent
               exponent -= 1
-          print(result)
+          print("The result is:", result)
     </pre>
   </body>
 </html>
