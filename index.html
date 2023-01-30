@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Python Code</title>
+    <title>Convert Decimal to Other Number Systems</title>
+    <style>
+      pre {
+        background-color: lightgray;
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
+    <h1>Convert Decimal to Other Number Systems</h1>
     <pre>
-      def dec_to_smthng():
+      def dec_to_something():
           table = {0: '0', 1: '1', 2: '2', 3: '3',
                    4: '4', 5: '5', 6: '6', 7: '7',
                    8: '8', 9: '9', 10: 'A', 11: 'B',
@@ -13,18 +20,18 @@
           result = ""
           print("This is decimal to something")
           numbersystem = int(input("Input numbersystem (no bigger than 16): "))
-          number = int(input("Input number: "))
+          number = int(input("Input decimal number: "))
           while number > 0:
               reminder = number % numbersystem
               result = table[reminder] + result
               number = number // numbersystem
           print(result)
-      dec_to_smthng()
-      def smthng_to_dec():
+      
+      def something_to_dec():
           table = {'0': 0, '1': 1, '2': 2, '3': 3,
                    '4': 4, '5': 5, '6': 6, '7': 7,
                    '8': 8, '9': 9, 'A': 10, 'B': 11,
-                   'C': 12, 'D': 13, 'E': 14, 'F': 16}
+                   'C': 12, 'D': 13, 'E': 14, 'F': 15}
           result = 0
           print("This is from something to decimal")
           numbersystem = int(input("Input numbersystem (no bigger than 16): "))
@@ -34,7 +41,6 @@
               result = result + table[i] *numbersystem ** exponent
               exponent -= 1
           print(result)
-      smthng_to_dec()
     </pre>
   </body>
 </html>
