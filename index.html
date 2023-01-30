@@ -5,34 +5,39 @@
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
-          <li><a href="#section1">Seection 1</a></li>
-          <li><a href="#section2">Seection 2</a></li>
-          <li><a href="#section3">Seection 3</a></li>
-        </ul>
-      </nav>
     </header>
     <main>
-      <section id="section1">
-        <h2>Section 1</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere, ipsum at placerat congue, risus nisi mollis magna, non euismod metus metus a metus.</p>
-        <div>
-          <p><a href="#section1/jajko">Jajko</a></p>
-        </div>
-        <section id="section1/jajko">
-          <h3>Jajko</h3>
-          <p>jajko to jajecznica</p>
-        </section>
-      </section>
-      <section id="section2">
-        <h2>Section 2</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere, ipsum at placerat congue, risus nisi mollis magna, non euismod metus metus a metus.</p>
-      </section>
-      <section id="section3">
-        <h2>Section 3</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere, ipsum at placerat congue, risus nisi mollis magna, non euismod metus metus a metus.</p>
-      </section>
+        <h2>Decimal and other things idk</h2>
+      def dec_to_smthng():
+    table = {0: '0', 1: '1', 2: '2', 3: '3',
+             4: '4', 5: '5', 6: '6', 7: '7',
+             8: '8', 9: '9', 10: 'A', 11: 'B',
+             12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+    result = ""
+    print("This is decimal to something")
+    numbersystem = int(input("Input numbersystem (no bigger than 16): "))
+    number = int(input("Input number: "))
+    while number > 0:
+        reminder = number % numbersystem
+        result = table[reminder] + result
+        number = number // numbersystem
+    print(result)
+dec_to_smthng()
+def smthng_to_dec():
+    table = {'0': 0, '1': 1, '2': 2, '3': 3,
+             '4': 4, '5': 5, '6': 6, '7': 7,
+             '8': 8, '9': 9, 'A': 10, 'B': 11,
+             'C': 12, 'D': 13, 'E': 14, 'F': 16}
+    result = 0
+    print("This is from something to decimal")
+    numbersystem = int(input("Input numbersystem (no bigger than 16): "))
+    number = input("Input number: ")
+    exponent = len(number) -1
+    for i in number:
+        result = result + table[i] *numbersystem ** exponent
+        exponent -= 1
+    print(result)
+smthng_to_dec()
     </main>
     <footer>
       <p>Copyright &copy; 2023</p>
