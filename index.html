@@ -6,8 +6,13 @@
       pre {
         background-color: lightgray;
         padding: 15px;
+        position: absolute;
+        top: 150px;
       }
       h1 {
+        text-align: center;
+      }
+      h2 {
         text-align: center;
         position: absolute;
         top: 100px;
@@ -15,17 +20,15 @@
       #darkPanel {
         background-color: rgba(0, 0, 0, 0.7);
         position: absolute;
-        z-index: 100;
         top: 0;
         left: 0;
         width: 100%;
         height: 10%;
-        display: flex;
         justify-content: center;
         align-items: center;
       }
       #darkPanel h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
         color: #FFF;
       }
     </style>
@@ -34,7 +37,7 @@
     <div id="darkPanel">
       <h1>OUR CODE</h1>
     </div>
-    <h1>Convert Decimal to Other Number Systems and Vice Versa</h1>
+    <h2>Convert Decimal to Other Number Systems and Vice Versa</h1>
     <pre>
       def dec_to_something():
           table = {0: '0', 1: '1', 2: '2', 3: '3',
