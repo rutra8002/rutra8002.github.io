@@ -68,6 +68,14 @@
               result = result + table[i] *numbersystem ** exponent
               exponent -= 1
           print("The result is:", result)
+      def BinaryToDecimal(binary):
+          decimal = 0
+          power = 0
+          while(binary > 0):
+              decimal += binary % 10 * (2 ** power)
+              binary = binary // 10
+              power += 1
+          print(decimal)
       def DecimalToBinary(num):
           if num>=1:
               DecimalToBinary(num //2)
