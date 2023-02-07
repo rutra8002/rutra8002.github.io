@@ -141,7 +141,47 @@ body {
     <h5>Title description, Dec 7, 2017</h5>
     <div class="fakeimg" style="height:200px;">Image</div>
     <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <p>      def dec_to_something():
+          table = {0: '0', 1: '1', 2: '2', 3: '3',
+                   4: '4', 5: '5', 6: '6', 7: '7',
+                   8: '8', 9: '9', 10: 'A', 11: 'B',
+                   12: 'C', 13: 'D', 14: 'E', 15: 'F'}
+          result = ""
+          print("This is the decimal to something conversion")
+          numbersystem = int(input("Enter the number system to convert to (no bigger than 16): "))
+          number = int(input("Enter the decimal number to convert: "))
+          while number > 0:
+              reminder = number % numbersystem
+              result = table[reminder] + result
+              number = number // numbersystem
+          print("The result is:", result)
+      
+      def something_to_dec():
+          table = {'0': 0, '1': 1, '2': 2, '3': 3,
+                   '4': 4, '5': 5, '6': 6, '7': 7,
+                   '8': 8, '9': 9, 'A': 10, 'B': 11,
+                   'C': 12, 'D': 13, 'E': 14, 'F': 15}
+          result = 0
+          print("This is the something to decimal conversion")
+          numbersystem = int(input("Enter the number system to convert from (no bigger than 16): "))
+          number = input("Enter the number to convert: ")
+          exponent = len(number) -1
+          for i in number:
+              result = result + table[i] *numbersystem ** exponent
+              exponent -= 1
+          print("The result is:", result)
+      def BinaryToDecimal(binary):
+          decimal = 0
+          power = 0
+          while(binary > 0):
+              decimal += binary % 10 * (2 ** power)
+              binary = binary // 10
+              power += 1
+          print(decimal)
+      def DecimalToBinary(num):
+          if num>=1:
+              DecimalToBinary(num //2)
+          print(num % 2, end = '')</p>
     <br>
     <h2>TITLE HEADING</h2>
     <h5>Title description, Sep 2, 2017</h5>
