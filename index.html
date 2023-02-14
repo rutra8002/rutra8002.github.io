@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Public Message Board</title>
-  <link rel="stylesheet" href="style.css">
+	<title>Shared Text Website with Message Saving</title>
 </head>
 <body>
-  <h1>Public Message Board</h1>
-  <form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name"><br><br>
-    <label for="message">Message:</label>
-    <textarea id="message" name="message"></textarea><br><br>
-    <input type="submit" value="Post" onclick="addMessage()">
-  </form>
-  <div id="messages"></div>
-  <script src="script.js"></script>
+	<h1>Shared Text Website with Message Saving</h1>
+	<form>
+		<label for="text-input">Type your message:</label>
+		<input type="text" id="text-input" name="text-input">
+		<button type="button" onclick="postMessage()">Post Message</button>
+	</form>
+	<hr>
+	<div id="messages">
+		<!-- Existing messages will be added here -->
+	</div>
+	<script>
+		function postMessage() {
+			// Get the text from the input field
+			var messageText = document.getElementById("text-input").value;
+			
+			// Create a new message element with the text
+			var messageElement = document.createElement("p");
+			messageElement.innerText = messageText;
+			
+			// Add the message element to the messages container
+			var messagesContainer = document.getElementById("messages");
+			messagesContainer.appendChild(messageElement);
+			
+			// Save the message to a file on GitHub
+			var messageData = { "message": messageText };
+			var messageJson = JSON.stringify(messageData);
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "https://api.github.com/repos/rutra8002/rutra8002.github.io/contents/messages.json");
+			xhr.setRequestHeader("Authorization", "Bearer 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");
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.send(messageJson);
+		}
+	</script>
 </body>
 </html>
