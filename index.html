@@ -18,10 +18,32 @@
 				return;
 			}
 
-			var messagesDiv = document.getElementById("messages");
-			messagesDiv.innerHTML += message + "<br>";
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "/message", true);
+			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+			xhr.send(JSON.stringify({message: message}));
 			document.getElementById("message").value = "";
 		}
+
+		function loadMessages() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == XMLHttpRequest.DONE) {
+					if (xhr.status == 200) {
+						var messages = JSON.parse(xhr.responseText);
+						var messagesDiv = document.getElementById("messages");
+						messagesDiv.innerHTML = "";
+						messages.forEach(function(message) {
+							messagesDiv.innerHTML += message + "<br>";
+						});
+					}
+				}
+			};
+			xhr.open("GET", "/messages", true);
+			xhr.send();
+		}
+
+		setInterval(loadMessages, 1000);
 	</script>
 </body>
 </html>
