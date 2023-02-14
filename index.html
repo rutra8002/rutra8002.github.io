@@ -1,199 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>Topopisy Pens</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-/* Style the body */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
-
-/* Header/logo Title */
-.header {
-  padding: 80px;
-  text-align: center;
-  background: #1abc9c;
-  color: white;
-}
-
-/* Increase the font size of the heading */
-.header h1 {
-  font-size: 40px;
-}
-
-/* Style the top navigation bar */
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-}
-
-/* Style the navigation bar links */
-.navbar a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-}
-
-/* Right-aligned link */
-.navbar a.right {
-  float: right;
-}
-
-/* Change color on hover */
-.navbar a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Column container */
-.row {  
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-}
-
-/* Create two unequal columns that sits next to each other */
-/* Sidebar/left column */
-.side {
-  -ms-flex: 30%; /* IE10 */
-  flex: 30%;
-  background-color: #f1f1f1;
-  padding: 20px;
-}
-
-/* Main column */
-.main {   
-  -ms-flex: 70%; /* IE10 */
-  flex: 70%;
-  background-color: white;
-  padding: 20px;
-}
-
-/* Fake image, just for this example */
-.fakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
-
-/* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-}
-
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 700px) {
-  .row {   
-    flex-direction: column;
-  }
-}
-
-/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
-@media screen and (max-width: 400px) {
-  .navbar a {
-    float: none;
-    width: 100%;
-  }
-}
-</style>
 </head>
 <body>
+<header class="header">
+  <img src="logo.png" alt="Logo" class="logo" width="206" height="206">
+  <h1>Topopisy Pens</h1>
+  <p>Your reliable and affordable writing instrument</p>
+</header>
 
-<div class="header">
-  <h1>My Website</h1>
-  <p>A website created by me.</p>
-</div>
-
-<div class="navbar">
+<nav class="navbar">
   <a href="https://www.youtube.com/channel/UCOUEbxFfxtXfON4BGnKyo6A">YouTube</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" class="right">Link</a>
-</div>
+  <a href="https://www.instagram.com/topopisy/">Instagram</a>
+  <a href="#about-us">About Us</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-<div class="row">
-  <div class="side">
-    <h2>About Me</h2>
-    <h5>Photo of me:</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    <h3>More Text</h3>
-    <p>Lorem ipsum dolor sit ame.</p>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div>
-  </div>
-  <div class="main">
-    <h2>TITLE HEADING</h2>
-    <h5>Title description, Dec 7, 2017</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p></p>
-    <br>
-    <h2>CONVERSION</h2>
-    <h5>Hexadecimal to binary and other shit, Feb 1, 2023</h5>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p><pre>      def dec_to_something():
-          table = {0: '0', 1: '1', 2: '2', 3: '3',
-                   4: '4', 5: '5', 6: '6', 7: '7',
-                   8: '8', 9: '9', 10: 'A', 11: 'B',
-                   12: 'C', 13: 'D', 14: 'E', 15: 'F'}
-          result = ""
-          print("This is the decimal to something conversion")
-          numbersystem = int(input("Enter the number system to convert to (no bigger than 16): "))
-          number = int(input("Enter the decimal number to convert: "))
-          while number > 0:
-              reminder = number % numbersystem
-              result = table[reminder] + result
-              number = number // numbersystem
-          print("The result is:", result)
-      
-      def something_to_dec():
-          table = {'0': 0, '1': 1, '2': 2, '3': 3,
-                   '4': 4, '5': 5, '6': 6, '7': 7,
-                   '8': 8, '9': 9, 'A': 10, 'B': 11,
-                   'C': 12, 'D': 13, 'E': 14, 'F': 15}
-          result = 0
-          print("This is the something to decimal conversion")
-          numbersystem = int(input("Enter the number system to convert from (no bigger than 16): "))
-          number = input("Enter the number to convert: ")
-          exponent = len(number) -1
-          for i in number:
-              result = result + table[i] *numbersystem ** exponent
-              exponent -= 1
-          print("The result is:", result)
-      def BinaryToDecimal(binary):
-          decimal = 0
-          power = 0
-          while(binary > 0):
-              decimal += binary % 10 * (2 ** power)
-              binary = binary // 10
-              power += 1
-          print(decimal)
-      def DecimalToBinary(num):
-          if num>=1:
-              DecimalToBinary(num //2)
-          print(num % 2, end = '')</pre></p>
-  </div>
-</div>
+<main class="main container-fluid">
+  <section id="about-us">
+    <h2>About Us</h2>
+    <p>Welcome to Topopisy Sp. z. o. o., a young and rapidly growing company specializing in the sale of pens with III LO Gdańsk-themed prints. Our main target audience is students, teachers, and fans of the school, as well as those who are looking for an original gift related to the school.
 
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+      Our company is made up of hard-working students from III LO. Our goal is to strengthen the spirit of the school and raise funds for a noble cause. Our products are professional and always of the highest quality to ensure the satisfaction of our customers. Our range of products includes pens with prints that are the perfect gift for students, teachers, and fans of III LO Gdańsk.
 
+      Our team is our strength and consists of experienced specialists responsible for various areas of the business, such as customer service, social media management, and communication with pen producers. Our team leader is Karol Szczygieł, with Łukasz Sala, Artur Kummer, and Krzysztof Knap as customer service representatives. Maciej Zdanowicz is our graphic designer, and Tobiasz Małyszek is our social media administrator. Magda Sulma and Zofia Bielawa are responsible for communicating with pen producers.
+
+      Our main product is a pen decorated with prints and the logo of III LO Gdańsk. The price of the pen is 3 PLN.
+
+      Thank you for visiting our website and taking the time to learn more about us. We invite you to take a look at our product, and we look forward to serving you.</p>
+  </section>
+  <section>
+    <h2>Pythoncode</h2>
+    <p><pre>
+import math
+
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f'({self.x}, {self.y})'
+
+    def distance_from_centre(self):
+        return math.sqrt(self.x ** 2 + self.y ** 2)
+
+    def cwiartka(self):
+        if self.x == 0 and self.y == 0:
+            return "na początku układu współrzędnych"
+        elif self.x == 0:
+            return "na osi Y"
+        elif self.y == 0:
+            return "na osi X"
+        elif self.x > 0 and self.y > 0:
+            return "I"
+        elif self.x < 0 and self.y > 0:
+            return "II"
+        elif self.x < 0 and self.y < 0:
+            return "III"
+        else:
+            return "IV"
+
+    def czy_w_kole(self, promien):
+        return self.distance_from_centre() <= promien
+
+    def odleglosc_do(self, inny_punkt):
+        return math.sqrt((self.x - inny_punkt.x) ** 2 + (self.y - inny_punkt.y) ** 2)
+
+
+punkt = Point(3, 4)
+print(punkt)
+print(punkt.distance_from_centre())
+print(punkt.cwiartka())
+print(punkt.czy_w_kole(5))
+inny_punkt = Point(2, 3)
+print(punkt.odleglosc_do(inny_punkt))
+    
+class Fraction:
+    def __init__(self, numerator, denominator):
+        self.numerator = numerator
+        self.denominator = denominator
+        self.skracanie()
+
+    def __str__(self):
+        return f'{self.numerator}/{self.denominator}'
+
+    def between_minus_one_and_one(self):
+        value = self.numerator / self.denominator
+        return value > -1 and value < 1
+
+    def multiply(self, other):
+        new_num = self.numerator * other.numerator
+        new_denominator = self.denominator * other.denominator
+        return Fraction(new_num, new_denominator)
+
+    def add(self, other):
+        new_denominator = self.denominator * other.denominator
+        new_num = (self.numerator * other.denominator) + (other.numerator * self.denominator)
+        return Fraction(new_num, new_denominator)
+
+    def gcd(self, a, b):
+        if b == 0:
+            return a
+        else:
+            return self.gcd(b, a % b)
+
+    def skracanie(self):
+        gcd = self.gcd(self.numerator, self.denominator)
+        self.numerator //= gcd
+        self.denominator //= gcd
+
+
+
+
+print(Fraction(2, 3))
+print(Fraction(3, 4))
+print(Fraction(2, 3).between_minus_one_and_one())
+print(Fraction(3, 4).between_minus_one_and_one())
+print(Fraction(2, 3).multiply(Fraction(3, 4)))
+print(Fraction(2, 3).add(Fraction(3, 4)))
+print(Fraction(10, 15))
+print(Fraction(3, 9).gcd(99, 9))
+
+
+
+
+
+class Circle:
+    def __init__(self, x, y, radius, color):
+        self.x = x
+        self.y = y
+        self.radius = radius
+        self.color = color
+
+    def __str__(self):
+        return f"Circle with center at ({self.x}, {self.y}), radius {self.radius} and color {self.color}"
+
+    def is_on_screen(self):
+        return (self.x + self.radius <= 1920 and self.x - self.radius >= 0 and
+                self.y + self.radius <= 1080 and self.y - self.radius >= 0)
+
+    def distance_from_another_circle(self, other):
+        dx = self.x - other.x
+        dy = self.y - other.y
+        return math.sqrt(dx * dx + dy * dy) - self.radius - other.radius
+
+    def intersects_another_circle(self, other):
+        distance = self.distance_from_another_circle(other)
+        return distance < 0
+# tworzenie obiektów klasy Circle
+circle1 = Circle(400, 400, 100, "red")
+circle2 = Circle(600, 600, 50, "blue")
+
+# wyświetlanie obiektów
+print(circle1)
+print(circle2)
+
+# sprawdzanie, czy okrąg mieści się na ekranie
+print(circle1.is_on_screen())
+print(circle2.is_on_screen())
+
+# obliczanie odległości między okręgami
+distance = circle1.distance_from_another_circle(circle2)
+print(f"Odległość między okręgami wynosi {distance}")
+
+# sprawdzanie, czy okręgi przecinają się
+intersects = circle1.intersects_another_circle(circle2)
+if intersects:
+    print("Okręgi przecinają się")
+else:
+    print("Okręgi nie przecinają się")
+</pre></p>
+  </section>
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>We'd love to hear from you! Fill out the form below to send us a message:</p>
+      <form action="https://www.youtube.com/watch?v=dQw4w9WgXcQ" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy;Topopisy. All rights reserved.</p>
+    <p>Email: info@topopisy.com</p>
+  </footer>
+</main>
 </body>
 </html>
