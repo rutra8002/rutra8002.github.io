@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Simple Chat</title>
+    <title>Public Message Board</title>
 </head>
 <body>
-	<h1>Simple Chat</h1>
-	<textarea id="message" placeholder="Write your message here"></textarea>
-	<button onclick="sendMessage()">Send</button>
-	<hr>
-	<div id="messages"></div>
+    <h1>Public Message Board</h1>
+    <form>
+        <input type="text" id="message" placeholder="Enter your message here" />
+        <button type="button" onclick="postMessage()">Post</button>
+    </form>
+    <ul id="messageList"></ul>
 
-	<script>
-		function sendMessage() {
-			var message = document.getElementById("message").value;
-			if (message.trim() == "") {
-				alert("Please enter a message");
-				return;
-			}
+    <script>
+        function postMessage() {
+            var messageInput = document.getElementById("message");
+            var message = messageInput.value;
+            var messageList = document.getElementById("messageList");
+            var listItem = document.createElement("li");
+            listItem.innerHTML = message;
+            messageList.appendChild(listItem);
+            saveMessage(message);
+            messageInput.value = "";
+        }
 
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "/message", true);
-			xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-			xhr.send(JSON.stringify({message: message}));
-			document.getElementById("message").value = "";
-		}
-
-		function loadMessages() {
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == XMLHttpRequest.DONE) {
-					if (xhr.status == 200) {
-						var messages = JSON.parse(xhr.responseText);
-						var messagesDiv = document.getElementById("messages");
-						messagesDiv.innerHTML = "";
-						messages.forEach(function(message) {
-							messagesDiv.innerHTML += message + "<br>";
-						});
-					}
-				}
-			};
-			xhr.open("GET", "/messages", true);
-			xhr.send();
-		}
-
-		setInterval(loadMessages, 1000);
-	</script>
+        function saveMessage(message) {
+            var request = new XMLHttpRequest();
+            request.open("POST", "https://api.github.com/repos/rutra8002/rutra8002.github.io/contents/messages.txt", true);
+            request.setRequestHeader("Authorization", "Bearer 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");
+            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            request.onload = function() {
+                console.log("Message saved to file");
+            };
+            var messageObject = {
+                "message": message
+            };
+            var messageJSON = JSON.stringify(messageObject);
+            var contentObject = {
+                "message.txt": {
+                    "content": btoa(messageJSON)
+                }
+            };
+            var content = JSON.stringify(contentObject);
+            request.send(content);
+        }
+    </script>
 </body>
 </html>
