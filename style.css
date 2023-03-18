@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    width: 100%; /* set body width to 100% of screen */
+    width: 100%;
 }
 
 nav {
@@ -11,21 +11,49 @@ nav {
     padding: 10px;
 }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.nav-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-nav li {
-    margin: 0 10px;
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-nav a {
+.logo a {
     color: white;
     text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin-left: 30px;
+}
+
+.nav-menu li:first-child {
+    margin-left: 0;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    color: #ccc;
 }
 
 header {
@@ -54,7 +82,7 @@ main {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
-    margin-bottom: 50px; /* added margin to push footer lower */
+    margin-bottom: 50px;
 }
 
 h2 {
