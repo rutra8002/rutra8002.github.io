@@ -3,6 +3,23 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    padding-bottom: 50px; /* add padding to bottom of body */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative; /* change position to relative */
+    bottom: 0;
+    width: 100%;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 nav {
@@ -20,9 +37,10 @@ nav {
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 }
+
 
 .logo a {
     color: white;
@@ -36,6 +54,7 @@ nav {
     margin: 0;
     padding: 0;
 }
+
 
 .nav-menu li {
     margin-left: 30px;
@@ -104,12 +123,3 @@ a {
     text-decoration: none;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
