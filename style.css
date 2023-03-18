@@ -1,0 +1,19 @@
+body {
+    background-color: hotpink;
+    color: white;
+    font-size: 48px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 200px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.button {
+    background-color: neon;
+    color: white;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 50px;
+}
