@@ -1,19 +1,83 @@
 body {
-    background-color: hotpink;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
     color: white;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+header {
+    background-image: url("header-bg.jpg");
+    background-size: cover;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+header h1 {
     font-size: 48px;
+    margin: 0;
+    text-shadow: 2px 2px #333;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 200px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-}
-
-.button {
-    background-color: neon;
-    color: #000000;
+header p {
     font-size: 24px;
+    margin: 20px 0 0 0;
+}
+
+main {
     padding: 20px;
-    border-radius: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 36px;
+    margin-top: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
 }
