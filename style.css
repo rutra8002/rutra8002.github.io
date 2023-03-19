@@ -118,12 +118,10 @@ a {
 }
 
 footer {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
+    background-color: #392828;
+    color: #adacac;
     padding: 20px;
-    position: relative; /* change position to relative */
-    bottom: 0;
-
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
 }
