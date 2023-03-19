@@ -118,11 +118,12 @@ a {
 }
 
 footer {
+    width: 100%;
     background-color: #333;
     color: white;
     text-align: center;
     padding: 20px;
     position: relative; /* change position to relative */
     bottom: 0;
-    width: 98%;
+
 }
