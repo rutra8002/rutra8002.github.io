@@ -2,9 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     width: 100%;
+    background-color: black; /* set the background color to black */
+    overflow-x: hidden;
 }
-
-
 
 p {
     font-size: 18px;
@@ -13,7 +13,7 @@ p {
 }
 
 nav {
-    background-color: #333;
+    background-color: black; /* set the background color to black */
     color: white;
     padding: 10px;
 }
@@ -31,7 +31,6 @@ nav {
     font-weight: bold;
 }
 
-
 .logo a {
     color: white;
     text-decoration: none;
@@ -44,7 +43,6 @@ nav {
     margin: 0;
     padding: 0;
 }
-
 
 .nav-menu li {
     margin-left: 30px;
@@ -66,14 +64,13 @@ nav {
 }
 
 header {
-    background-image: url("header-bg.jpg");
-    background-size: cover;
-    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 200px); /* set the height of the header to 100% of the viewport height minus 200px */
     color: white;
+    background-color: black; /* set the background color to black */
 }
 
 header h1 {
@@ -91,16 +88,14 @@ main {
     padding: 20px;
     max-width: 8000px;
     margin: 0 auto;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url("main.jpg");
-    background-size: cover;
-    background-position: center;
-
+    background-color: black; /* set the background color to black */
+    height: 100%; /* set the height of the main content to 100% */
 }
-
 
 h2 {
     font-size: 36px;
     margin-top: 0;
+    color: white;
 }
 
 ul {
@@ -113,15 +108,18 @@ li {
 }
 
 a {
-    color: #333;
+    color: white;
     text-decoration: none;
 }
 
 footer {
-    background-color: #392828;
+    background-color: black; /* set the background color to black */
     color: #adacac;
     padding: 20px;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+    position: absolute; /* set the position to absolute */
+    bottom: 0; /* set the distance from the bottom of the page to 0 */
+    width: 100%; /* set the width to 100% */
 }
