@@ -30,6 +30,11 @@ body {
   backdrop-filter: blur(6px);
 }
 
+.navbar-desktop {
+  display: flex;
+  gap: 2.5rem;
+}
+
 .nav-item {
   position: relative;
   color: #bbb;
@@ -67,6 +72,37 @@ body {
 
 .nav-item:hover::after {
   width: 100%;
+}
+
+.drawer-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 21;
+  margin-left: auto;
+}
+
+.side-drawer {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 220px;
+  height: 100vh;
+  background: rgba(30, 30, 40, 0.98);
+  box-shadow: -2px 0 16px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4.5rem 1.5rem 1.5rem 1.5rem;
+  gap: 1.5rem;
+  transition: right 0.35s cubic-bezier(.4,0,.2,1);
+  z-index: 20;
+}
+
+.side-drawer.open {
+  right: 0;
 }
 
 main {
@@ -145,9 +181,26 @@ p {
   .navbar {
     gap: 1.2rem;
     font-size: 0.98rem;
+    min-height: 60px;
+    height: 60px;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
   }
   section {
     padding: 1.2rem 0.5rem;
     max-width: 98vw;
+  }
+  .navbar-desktop {
+    display: none;
+  }
+  .drawer-toggle {
+    display: block;
+    position: absolute;
+    right: 1.2rem;
+    top: 1.2rem;
+  }
+  .side-drawer {
+    display: flex;
   }
 }
