@@ -28,25 +28,41 @@ function App() {
       </nav>
       <main>
         {activeSection === 'about' && (
-          <section>
+          <section key="about">
             <h1>About Me</h1>
-            <p>Me About</p>
+            <p>
+              Hi! I'm Jeff. I use Arch
+            </p>
+            <p>
+              <strong>Skills:</strong> Python, JavaScript, C, HTML, CSS
+            </p>
           </section>
         )}
         {activeSection === 'projects' && (
-          <section>
+          <section key="projects">
             <h1>Projects</h1>
             <ul>
-              <li>Project 1</li>
-              <li>Project 2</li>
-              <li>Project 3</li>
+              <li>
+                <strong>Portfolio Website</strong><br />
+                A modern, animated portfolio built with React and CSS.
+              </li>
+              <li>
+                <strong>Optyka</strong><br />
+                A Python-based simulator of optic phenomenons. It uses the Pygame library for app development.
+              </li>
+              <li>
+                <strong>Pixel Racers</strong><br />
+                Simple game where you race against bots
+              </li>
             </ul>
           </section>
         )}
         {activeSection === 'contacts' && (
-          <section>
+          <section key="contacts">
             <h1>Contacts</h1>
-            <p>Email: jeffthemail</p>
+            <p>Email: <a href="mailto:jeffthemail@gmail.com" style={{color:'#ff8c00',textDecoration:'underline'}}>jeffthemail@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" style={{color:'#ff0080',textDecoration:'underline'}}>linkedin.com/</a></p>
+            <p>GitHub: <a href="https://github.com/rutra8002" target="_blank" rel="noopener noreferrer" style={{color:'#fff',textDecoration:'underline'}}>github.com/rutra8002</a></p>
           </section>
         )}
       </main>
