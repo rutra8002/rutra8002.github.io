@@ -7,9 +7,24 @@ function App() {
   return (
     <div>
       <nav className="navbar">
-        <button onClick={() => setActiveSection('about')} className={activeSection === 'about' ? 'active' : ''}>About Me</button>
-        <button onClick={() => setActiveSection('projects')} className={activeSection === 'projects' ? 'active' : ''}>Projects</button>
-        <button onClick={() => setActiveSection('contacts')} className={activeSection === 'contacts' ? 'active' : ''}>Contacts</button>
+        <span
+          onClick={() => setActiveSection('about')}
+          className={activeSection === 'about' ? 'nav-item active' : 'nav-item'}
+        >
+          About Me
+        </span>
+        <span
+          onClick={() => setActiveSection('projects')}
+          className={activeSection === 'projects' ? 'nav-item active' : 'nav-item'}
+        >
+          Projects
+        </span>
+        <span
+          onClick={() => setActiveSection('contacts')}
+          className={activeSection === 'contacts' ? 'nav-item active' : 'nav-item'}
+        >
+          Contacts
+        </span>
       </nav>
       <main>
         {activeSection === 'about' && (
