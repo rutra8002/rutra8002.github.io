@@ -4,3 +4,44 @@
   padding: 2rem;
   text-align: center;
 }
+
+.navbar {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.navbar button {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar button.active,
+.navbar button:hover {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .navbar button {
+    width: 100%;
+  }
+}
