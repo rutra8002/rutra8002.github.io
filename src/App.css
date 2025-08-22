@@ -53,7 +53,7 @@ body {
   display: block;
   height: 2.5px;
   width: 0;
-  background: linear-gradient(90deg, #ff8c00 0%, #ff0080 100%);
+  background: #ff0000;
   transition: width 0.35s cubic-bezier(.4,0,.2,1);
   position: absolute;
   left: 0;
@@ -138,10 +138,7 @@ h1 {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 1.2rem;
-  background: linear-gradient(90deg, #ff8c00 0%, #ff0080 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #ff0000;
 }
 
 ul {
@@ -162,7 +159,7 @@ li {
 }
 
 li:hover {
-  background: linear-gradient(90deg, #ff8c00 0%, #ff0080 100%);
+  background: #ff0000;
   color: #fff;
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 6px 24px rgba(255,0,128,0.13);
