@@ -1,4 +1,8 @@
 /* Modern font and background */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(120deg, #232526 0%, #414345 100%);
