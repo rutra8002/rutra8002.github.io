@@ -162,8 +162,6 @@ li {
 }
 
 li:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 6px 24px rgba(102, 126, 234, 0.3);
 }
@@ -172,6 +170,100 @@ p {
   font-size: 1.13rem;
   color: #e0e0e0;
   margin-bottom: 0.7rem;
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  max-width: 100%;
+}
+
+.projects-section h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.search-bar {
+  display: block;
+  width: 60%;
+  margin: 0 auto 2rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #555;
+  background-color: #2c2c38;
+  color: #f5f6fa;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+  border-color: #7f5af0;
+  box-shadow: 0 0 8px rgba(127, 90, 240, 0.5);
+}
+
+.projects-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-item {
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1.5rem;
+  background-color: #2c2c38;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(127, 90, 240, 0.5), 0 0 5px rgba(127, 90, 240, 0.4);
+  border-color: rgba(127, 90, 240, 0.5);
+}
+
+.project-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-item strong {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #7f5af0;
+}
+
+.project-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  margin-top: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #7f5af0;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 15px;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tag:hover {
+  background-color: #9d7fee;
 }
 
 @media (max-width: 700px) {
