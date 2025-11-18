@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "bash -c 'source .env && gh-pages -d dist -r https://$GH_PAGES_TOKEN@github.com/rutra8002/rutra8002.github.io.git'",
     "lint": "eslint .",
     "preview": "vite preview"
   },
