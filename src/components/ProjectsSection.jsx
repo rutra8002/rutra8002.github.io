@@ -21,6 +21,12 @@ const projectsData = [
     tags: ['Python', 'Pygame'],
     },
     {
+    title: 'Storm Survival',
+    description: 'Realistic real-time apocalypse survival game. Built during Brackeys game jam.',
+    link: 'https://github.com/V8Enthusiast/StormSurvival',
+    tags: ['Python', 'Pygame'],
+    },
+    {
     title: 'NukeTown',
     description: 'Game about uranium and his fellas created during 24 hour hackathon.',
     link: 'https://github.com/MalyszekTobias/NukeTown',
