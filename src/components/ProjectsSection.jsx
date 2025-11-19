@@ -31,7 +31,13 @@ const projectsData = [
     description: 'Game about uranium and his fellas created during 24 hour hackathon.',
     link: 'https://github.com/MalyszekTobias/NukeTown',
     tags: ['Python', 'Raylib'],
-    }
+    },
+    {
+    title: 'RutraOS',
+    description: 'A buggy operating system written in C.',
+    link: "https://github.com/rutra8002/RutraOS",
+    tags: ['C', 'Operating System'],
+    },
 ];
 
 function ProjectsSection() {
