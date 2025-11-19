@@ -7,7 +7,7 @@ function AboutSection() {
         <span className="about-eyebrow">Profile</span>
         <h1>About Me</h1>
         <p className="about-summary">
-          Jeff. I use Arch btw.
+          Jeff goes brr. I use Arch btw.
         </p>
       </div>
       <div className="about-panel">
