@@ -38,6 +38,12 @@ const projectsData = [
     link: "https://github.com/rutra8002/RutraOS",
     tags: ['C', 'Operating System'],
     },
+    {
+    title: 'Quiz app',
+    description: 'A simple quiz application built with HTML, Tailwind, Flask, sqlite and Gemini AI for answer checking. ',
+    link: 'https://github.com/rutra8002/quizapp',
+    tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
+    },
 ];
 
 function ProjectsSection() {
