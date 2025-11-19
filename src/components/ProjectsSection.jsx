@@ -66,11 +66,18 @@ function ProjectsSection() {
         {filteredProjects.map(project => (
           <li key={project.title} className="project-item">
             <a href={project.link} target="_blank" rel="noopener noreferrer">
-              <strong>{project.title}</strong>
-              <p>{project.description}</p>
-              <div className="tags">
+              <strong className="project-title">{project.title}</strong>
+              <p className="project-description">{project.description}</p>
+              <div className="project-tags">
                 {project.tags.map(tag => (
-                  <span key={tag} className="tag" onClick={(e) => { e.preventDefault(); handleTagClick(tag); }}>
+                  <span
+                    key={tag}
+                    className="skill-pill project-tag"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleTagClick(tag);
+                    }}
+                  >
                     {tag}
                   </span>
                 ))}
@@ -84,4 +91,3 @@ function ProjectsSection() {
 }
 
 export default ProjectsSection;
-
