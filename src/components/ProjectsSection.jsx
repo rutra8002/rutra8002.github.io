@@ -30,7 +30,7 @@ const projectsData = [
     title: 'NukeTown',
     description: 'Game about uranium and his fellas created during 24 hour hackathon.',
     link: 'https://github.com/MalyszekTobias/NukeTown',
-    tags: ['Python', 'Raylib'],
+    tags: ['Python', 'Raylib', 'GLSL'],
     },
     {
     title: 'RutraOS',
