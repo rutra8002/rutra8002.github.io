@@ -116,9 +116,6 @@ function ProjectsSection() {
 				<h1 className="text-4xl font-bold bg-linear-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
 					Projects
 				</h1>
-				<p className="text-sm text-slate-400">
-					Clear split between solo work and team collaborations.
-				</p>
 			</div>
 
 			<div className="flex flex-wrap gap-2">
