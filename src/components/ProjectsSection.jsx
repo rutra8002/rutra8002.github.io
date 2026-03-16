@@ -44,6 +44,12 @@ const projectsData = [
     link: 'https://github.com/rutra8002/quizapp',
     tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
     },
+    {
+    title: 'RutraCPU',
+    description: 'A fully custom CPU & GPU designed from scratch in Verilog. Includes a high-level Rutra programming language that compiles to Rutra Assembly, which is then assembled to raw binary by a Python-based assembler.',
+    link: 'https://github.com/rutra8002/rutracpu',
+    tags: ['Verilog', 'CPU', 'GPU', 'Rutra Programming Language', 'Rutra Assembly', 'Python', 'Compiler'],
+    },
 ];
 
 function ProjectsSection() {
