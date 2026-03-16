@@ -21,7 +21,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f0f1a] via-[#1a1a2e] to-[#16213e]">
+    <div className="min-h-screen">
+      <div className="fixed inset-0 -z-10 bg-linear-to-br from-[#0f0f1a] via-[#1a1a2e] to-[#16213e]" />
       <Navbar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
