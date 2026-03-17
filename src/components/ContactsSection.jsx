@@ -13,8 +13,8 @@ const contacts = [
 	{
 		icon: FaLinkedin,
 		label: 'LinkedIn',
-		display: 'linkedin.com/rutra',
-		href: 'https://www.linkedin.com/in/artur-k-7b6718340/',
+		display: 'linkedin.com/in/rutra8002/',
+		href: 'https://www.linkedin.com/in/rutra8002/',
 		color: 'text-blue-400',
 	},
 	{
