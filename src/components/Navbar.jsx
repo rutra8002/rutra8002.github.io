@@ -15,30 +15,37 @@ function Navbar({ activeSection, setActiveSection, drawerOpen, setDrawerOpen, ha
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="text-violet-400 font-bold text-lg tracking-tight select-none">rutra.me</span>
 
-          {/* Desktop nav */}
-          <div className="hidden sm:flex gap-1">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.key}
-                onClick={() => setActiveSection(item.key)}
-                className={cn(
-                  'relative px-4 py-2 text-sm font-medium rounded-md transition-colors',
-                  activeSection === item.key
-                    ? 'text-white'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
-                )}
-              >
-                {item.label}
-                {activeSection === item.key && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute inset-0 rounded-md bg-violet-600/20 border border-violet-500/30 -z-10"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
+					{/* Desktop nav */}
+					<div className="hidden sm:flex gap-1">
+						{NAV_ITEMS.map((item) => (
+							<button
+								key={item.key}
+								onClick={() => setActiveSection(item.key)}
+								className={cn(
+									'relative px-5 py-2.5 text-sm font-medium transition-colors',
+									activeSection === item.key
+										? 'text-white'
+										: 'text-slate-400 hover:text-slate-200'
+								)}
+							>
+								<span className="relative z-10">{item.label}</span>
+								{activeSection === item.key && (
+									<>
+										<motion.span
+											layoutId="nav-active-tab"
+											className="absolute inset-0 bg-slate-900/95"
+											transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+										/>
+										<motion.span
+											layoutId="nav-underline"
+											className="absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 w-16 bg-violet-500"
+											transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+										/>
+									</>
+								)}
+							</button>
+						))}
+					</div>
 
           {/* Mobile toggle */}
           <button
