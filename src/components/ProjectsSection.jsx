@@ -38,6 +38,13 @@ const projectsData = [
 		projectType: 'group',
 	},
 	{
+		title: 'Jeff The Grappler',
+		description: 'Protype of a game about Jeff, a grappling gun enthusiast. He has to fight with enemies using his guns.',
+		link: 'https://github.com/rutra8002/jeff_the_grappler',
+		tags: ['Python', 'Raylib', 'GLSL'],
+		projectType: 'personal',
+	},
+	{
 		title: 'Portfolio Website',
 		description: 'A modern, animated portfolio built with React and CSS.',
 		link: 'https://github.com/rutra8002/rutra8002.github.io',
