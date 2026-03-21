@@ -52,26 +52,11 @@ const projectsData = [
 		projectType: 'personal',
 	},
 	{
-		title: 'RutraOS',
-		description: 'A buggy operating system written in C.',
-		link: 'https://github.com/rutra8002/RutraOS',
-		tags: ['C', 'Operating System'],
-		projectType: 'personal',
-	},
-	{
 		title: 'Quiz app',
 		description:
 			'A simple quiz application built with HTML, Tailwind, Flask, SQLite and Gemini AI for answer checking.',
 		link: 'https://github.com/rutra8002/quizapp',
 		tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
-		projectType: 'personal',
-	},
-	{
-		title: 'RutraCPU',
-		description:
-			'A fully custom CPU & GPU designed from scratch in Verilog. Includes a high-level language, compiler and assembler.',
-		link: 'https://github.com/rutra8002/rutracpu',
-		tags: ['Verilog', 'CPU', 'GPU', 'Rutra Programming Language', 'Rutra Assembly', 'Python', 'Compiler'],
 		projectType: 'personal',
 	},
 ];

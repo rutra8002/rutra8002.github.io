@@ -17,7 +17,7 @@ const languageGroups = [
 	{
 		title: "Minor",
 		description: "Used occasionally",
-		skills: ["C", "JavaScript", "PHP", "C++", "ASM", "Java"],
+		skills: ["JavaScript"],
 	},
 ];
 
@@ -44,7 +44,7 @@ function AboutSection() {
 				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
 					I focus mostly on Python and have been actively using it since 2020. I have
 					also used HTML and CSS since 2022, and have some additional hands-on
-					experience with C, JavaScript, PHP, C++, ASM, and Java.
+					experience with JavaScript.
 				</p>
 			</motion.div>
 
