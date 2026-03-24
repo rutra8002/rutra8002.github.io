@@ -6,23 +6,31 @@ import { Card, CardContent } from "./ui/card";
 const languageGroups = [
 	{
 		title: "Main",
-		description: "Most active since 2020",
-		skills: ["Python"],
+		description: "Most active",
+		skills: [{ name: "Python", since: "since 2020" }],
 	},
 	{
 		title: "Secondary",
-		description: "Used since 2022, less active",
-		skills: ["HTML", "CSS"],
+		description: "Less active",
+		skills: [
+			{ name: "HTML", since: "since 2022" },
+			{ name: "CSS", since: "since 2022" },
+		],
 	},
 	{
 		title: "Minor",
 		description: "Used occasionally",
-		skills: ["JavaScript"],
+		skills: [{ name: "JavaScript", since: "hands-on experience" }],
 	},
 	{
 		title: "Tools",
-		description: "Used since 2017",
-		skills: ["MS Office"],
+		description: "Microsoft Office",
+		skills: [
+			{ name: "PowerPoint", since: "since 2018" },
+			{ name: "Word", since: "since 2020" },
+			{ name: "Excel", since: "since 2022" },
+			{ name: "Access", since: "since 2024" },
+		],
 	},
 ];
 
@@ -49,7 +57,9 @@ function AboutSection() {
 				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
 					I focus mostly on Python and have been actively using it since 2020. I have
 					also used HTML and CSS since 2022, and have some additional hands-on
-					experience with JavaScript. I have also been using MS Office since 2017.
+					experience with JavaScript. My Microsoft Office experience includes
+					PowerPoint since 2018, Word since 2020, Excel since 2022, and Access
+					since 2024.
 				</p>
 			</motion.div>
 
@@ -86,7 +96,7 @@ function AboutSection() {
 									<div className="flex flex-wrap gap-2">
 										{group.skills.map((skill, i) => (
 											<motion.div
-												key={skill}
+												key={skill.name}
 												initial={{ opacity: 0, scale: 0.8 }}
 												animate={{ opacity: 1, scale: 1 }}
 												transition={{
@@ -94,8 +104,12 @@ function AboutSection() {
 														0.2 + groupIndex * 0.08 + i * 0.05,
 													duration: 0.25,
 												}}
+												className="inline-flex items-center gap-2"
 											>
-												<Badge>{skill}</Badge>
+												<Badge>{skill.name}</Badge>
+												<span className="text-xs text-slate-400">
+													{skill.since}
+												</span>
 											</motion.div>
 										))}
 									</div>
