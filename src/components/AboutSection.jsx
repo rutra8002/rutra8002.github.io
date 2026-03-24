@@ -19,6 +19,11 @@ const languageGroups = [
 		description: "Used occasionally",
 		skills: ["JavaScript"],
 	},
+	{
+		title: "Tools",
+		description: "Used since 2017",
+		skills: ["MS Office"],
+	},
 ];
 
 function AboutSection() {
@@ -44,7 +49,7 @@ function AboutSection() {
 				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
 					I focus mostly on Python and have been actively using it since 2020. I have
 					also used HTML and CSS since 2022, and have some additional hands-on
-					experience with JavaScript.
+					experience with JavaScript. I have also been using MS Office since 2017.
 				</p>
 			</motion.div>
 
@@ -56,7 +61,7 @@ function AboutSection() {
 				<Card className="border-violet-500/20">
 					<CardContent className="pt-6">
 						<p className="text-xs font-semibold uppercase tracking-widest text-violet-300 mb-4">
-							Language Experience
+							Skills & Tools
 						</p>
 						<div className="flex flex-col gap-4">
 							{languageGroups.map((group, groupIndex) => (
