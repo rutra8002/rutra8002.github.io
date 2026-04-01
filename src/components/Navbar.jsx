@@ -13,7 +13,7 @@ function Navbar({ activeSection, setActiveSection, drawerOpen, setDrawerOpen, ha
     <>
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/5 shadow-lg">
         <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-violet-400 font-bold text-lg tracking-tight select-none">rutra.me</span>
+          <span className="text-violet-400 font-bold text-lg tracking-tight select-none" onClick={() => setActiveSection('about')}>rutra.me</span>
 
 					{/* Desktop nav */}
 					<div className="hidden sm:flex gap-1">
