@@ -22,16 +22,16 @@ const languageGroups = [
 		description: "Used occasionally",
 		skills: [{ name: "JavaScript", since: "hands-on experience" }],
 	},
-	{
-		title: "Tools",
-		description: "Microsoft Office",
-		skills: [
-			{ name: "PowerPoint", since: "since 2018" },
-			{ name: "Word", since: "since 2020" },
-			{ name: "Excel", since: "since 2022" },
-			{ name: "Access", since: "since 2024" },
-		],
-	},
+	// {
+	// 	title: "Tools",
+	// 	description: "Microsoft Office",
+	// 	skills: [
+	// 		{ name: "PowerPoint", since: "since 2018" },
+	// 		{ name: "Word", since: "since 2020" },
+	// 		{ name: "Excel", since: "since 2022" },
+	// 		{ name: "Access", since: "since 2024" },
+	// 	],
+	// },
 ];
 
 function AboutSection() {
@@ -57,9 +57,10 @@ function AboutSection() {
 				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
 					I focus mostly on Python and have been actively using it since 2020. I have
 					also used HTML and CSS since 2022, and have some additional hands-on
-					experience with JavaScript. My Microsoft Office experience includes
-					PowerPoint since 2018, Word since 2020, Excel since 2022, and Access
-					since 2024.
+					experience with JavaScript.
+					{/*My Microsoft Office experience includes*/}
+					{/*PowerPoint since 2018, Word since 2020, Excel since 2022, and Access*/}
+					{/*since 2024.*/}
 				</p>
 			</motion.div>
 
