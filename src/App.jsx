@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactsSection from './components/ContactsSection';
+import Achievementssection from './components/Achievementssection.jsx';
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');
@@ -18,6 +19,7 @@ function App() {
     about: <AboutSection />,
     projects: <ProjectsSection />,
     contacts: <ContactsSection />,
+    achievements: <Achievementssection />,
   };
 
   return (

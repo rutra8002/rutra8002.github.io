@@ -1,30 +1,74 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Search, Users, User } from 'lucide-react';
+import { ExternalLink, Search, Users, User, Cpu, Trophy, Medal } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
 
 const projectsData = [
 	{
-		title: 'Optyka',
+		title: 'RutraCPU',
 		description:
-			'A Python-based simulator of optic phenomenons. It uses the Pygame library for app development.',
-		link: 'https://github.com/Hohenzoler/optyka',
-		tags: ['Python', 'Pygame'],
-		projectType: 'group',
+			'A complete 8-bit computing stack built from scratch: hardware simulation in Icarus Verilog, custom 12-bit ISA with 11 instructions, Python assembler, and a high-level compiled language (.rpl) with AST and code generation. Includes a GPU peripheral with ASCII framebuffer. Full pipeline: .rpl → .rasm → .mem → GPU viewer.',
+		link: 'https://github.com/rutra8002/rutracpu',
+		tags: ['Verilog', 'Python', 'ASM', 'Compiler', 'HDL'],
+		projectType: 'personal',
+		featured: true,
+	},
+	{
+		title: 'RutraOS',
+		description:
+			'Custom operating system written in C and x86 Assembly from scratch: kernel, interrupt handling, memory management, and a basic process scheduler. Boots via GRUB.',
+		link: 'https://github.com/rutra8002/RutraOS',
+		tags: ['C', 'x86 Assembly', 'OS'],
+		projectType: 'personal',
+		featured: true,
+	},
+	{
+		title: 'Quiz App',
+		description:
+			'A full-stack quiz application with user authentication, SQLite backend, and AI-powered answer validation via the Gemini API. Deployed on a Raspberry Pi with Flask.',
+		link: 'https://github.com/rutra8002/quizapp',
+		tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
+		projectType: 'personal',
+	},
+	{
+		title: 'Portfolio Website',
+		description: 'This site. A modern, animated portfolio built with React, Tailwind, and Framer Motion.',
+		link: 'https://github.com/rutra8002/rutra8002.github.io',
+		tags: ['React', 'CSS', 'JavaScript'],
+		projectType: 'personal',
+	},
+	{
+		title: 'Jeff The Grappler',
+		description:
+			'Prototype of an action game about Jeff, a grappling gun enthusiast. Focused on fluid movement mechanics and combat, built with Raylib and GLSL shaders.',
+		link: 'https://github.com/rutra8002/jeff_the_grappler',
+		tags: ['Python', 'Raylib', 'GLSL'],
+		projectType: 'personal',
 	},
 	{
 		title: 'Pixel Racers',
-		description: 'Simple game where you race against bots.',
+		description:
+			'Top-down pixel racing game with AI bots. Built as a team for Motorola Science Cup 2025 - 2nd place nationally.',
 		link: 'https://github.com/rutra8002/pixel_racers',
 		tags: ['Python', 'Pygame'],
 		projectType: 'group',
+		achievement: { icon: Trophy, color: 'text-yellow-400', label: '2nd place · Motorola Science Cup 2025' },
+	},
+	{
+		title: 'Optyka',
+		description:
+			'Physics-based optics simulator modelling reflections, refractions, and lenses. Built as a team for Motorola Science Cup 2024.',
+		link: 'https://github.com/Hohenzoler/optyka',
+		tags: ['Python', 'Pygame', 'NumPy'],
+		projectType: 'group',
+		achievement: { icon: Medal, color: 'text-orange-400', label: '7th place · Motorola Science Cup 2024' },
 	},
 	{
 		title: 'Storm Survival',
 		description:
-			'Realistic real-time apocalypse survival game. Built during Brackeys game jam.',
+			'Realistic real-time apocalypse survival game. Built during the Brackeys Game Jam - shipped in one week from idea to playable prototype.',
 		link: 'https://github.com/V8Enthusiast/StormSurvival',
 		tags: ['Python', 'Pygame'],
 		projectType: 'group',
@@ -32,32 +76,10 @@ const projectsData = [
 	{
 		title: 'NukeTown',
 		description:
-			'Game about uranium and his fellas created during 24 hour hackathon.',
+			'Game about uranium and his fellas, created during a 24-hour hackathon (HackTheTopo). Delivered under extreme time pressure.',
 		link: 'https://github.com/MalyszekTobias/NukeTown',
 		tags: ['Python', 'Raylib', 'GLSL'],
 		projectType: 'group',
-	},
-	{
-		title: 'Jeff The Grappler',
-		description: 'Protype of a game about Jeff, a grappling gun enthusiast. He has to fight with enemies using his guns.',
-		link: 'https://github.com/rutra8002/jeff_the_grappler',
-		tags: ['Python', 'Raylib', 'GLSL'],
-		projectType: 'personal',
-	},
-	{
-		title: 'Portfolio Website',
-		description: 'A modern, animated portfolio built with React and CSS.',
-		link: 'https://github.com/rutra8002/rutra8002.github.io',
-		tags: ['React', 'CSS', 'JavaScript'],
-		projectType: 'personal',
-	},
-	{
-		title: 'Quiz app',
-		description:
-			'A simple quiz application built with HTML, Tailwind, Flask, SQLite and Gemini AI for answer checking.',
-		link: 'https://github.com/rutra8002/quizapp',
-		tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
-		projectType: 'personal',
 	},
 ];
 
@@ -89,7 +111,8 @@ function ProjectsSection() {
 					p.description.toLowerCase().includes(q) ||
 					p.projectType.toLowerCase().includes(q) ||
 					projectTypeMeta[p.projectType].label.toLowerCase().includes(q) ||
-					p.tags.some((t) => t.toLowerCase().includes(q))
+					p.tags.some((t) => t.toLowerCase().includes(q)) ||
+					(p.achievement && p.achievement.label.toLowerCase().includes(q))
 			)
 		);
 	}, [searchQuery]);
@@ -105,7 +128,7 @@ function ProjectsSection() {
 				<span className="text-xs font-semibold tracking-widest uppercase text-violet-400">
 					Work
 				</span>
-				<h1 className="text-4xl font-bold bg-linear-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
+				<h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
 					Projects
 				</h1>
 			</div>
@@ -113,8 +136,7 @@ function ProjectsSection() {
 			<div className="flex flex-wrap gap-2">
 				{Object.entries(projectTypeMeta).map(([key, type]) => {
 					const Icon = type.icon;
-					const count = projectsData.filter((project) => project.projectType === key).length;
-
+					const count = projectsData.filter((p) => p.projectType === key).length;
 					return (
 						<div
 							key={key}
@@ -149,6 +171,7 @@ function ProjectsSection() {
 					{filtered.map((project, i) => {
 						const type = projectTypeMeta[project.projectType];
 						const TypeIcon = type.icon;
+						const AchievementIcon = project.achievement?.icon;
 
 						return (
 							<motion.div
@@ -158,6 +181,7 @@ function ProjectsSection() {
 								animate={{ opacity: 1, scale: 1 }}
 								exit={{ opacity: 0, scale: 0.9 }}
 								transition={{ delay: i * 0.05, duration: 0.3 }}
+								className={project.featured ? 'sm:col-span-2' : ''}
 							>
 								<a
 									href={project.link}
@@ -165,12 +189,17 @@ function ProjectsSection() {
 									rel="noopener noreferrer"
 									className="block h-full"
 								>
-									<Card className="h-full p-5 flex flex-col gap-3 border-white/10 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-violet-900/30 hover:shadow-xl transition-all duration-200 cursor-pointer group">
+									<Card className={`h-full p-5 flex flex-col gap-3 border-white/10 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-violet-900/30 hover:shadow-xl transition-all duration-200 cursor-pointer group ${project.featured ? 'border-violet-500/25 bg-violet-950/10' : ''}`}>
 										<div className="flex items-start justify-between gap-2">
 											<div className="flex flex-col gap-2">
-												<span className="text-base font-semibold text-slate-100 group-hover:text-violet-300 transition-colors">
-													{project.title}
-												</span>
+												<div className="flex items-center gap-2">
+													{project.featured && (
+														<Cpu size={14} className="text-violet-400" />
+													)}
+													<span className="text-base font-semibold text-slate-100 group-hover:text-violet-300 transition-colors">
+														{project.title}
+													</span>
+												</div>
 												<div className="flex items-center gap-2 text-xs text-slate-400">
 													<TypeIcon size={14} />
 													<Badge variant={type.variant} className="cursor-default hover:border-inherit hover:bg-inherit">
@@ -186,6 +215,14 @@ function ProjectsSection() {
 										<p className="text-sm text-slate-400 leading-relaxed flex-1">
 											{project.description}
 										</p>
+										{project.achievement && (
+											<div className="flex items-center gap-1.5">
+												<AchievementIcon size={13} className={project.achievement.color} />
+												<span className={`text-xs font-medium ${project.achievement.color}`}>
+													{project.achievement.label}
+												</span>
+											</div>
+										)}
 										<div className="flex flex-wrap gap-1.5">
 											{project.tags.map((tag) => (
 												<Badge

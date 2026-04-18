@@ -1,37 +1,52 @@
 import { motion } from "framer-motion";
-
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
 const languageGroups = [
 	{
-		title: "Main",
-		description: "Most active",
-		skills: [{ name: "Python", since: "since 2020" }],
-	},
-	{
-		title: "Secondary",
-		description: "Less active",
+		title: "Languages",
+		description: "Programming languages",
 		skills: [
-			{ name: "HTML", since: "since 2022" },
-			{ name: "CSS", since: "since 2022" },
+			{ name: "Python", since: "since 2020" },
+			{ name: "JavaScript", since: "since 2023" },
+			{ name: "HTML / CSS", since: "since 2022" },
+			{ name: "C", since: "since 2024" },
+			{ name: "TypeScript", since: "since 2025#6" },
+			{ name: "x86 Assembly", since: "since 2024" },
+			{ name: "Verilog", since: "since 2025" },
 		],
 	},
 	{
-		title: "Minor",
-		description: "Used occasionally",
-		skills: [{ name: "JavaScript", since: "hands-on experience" }],
+		title: "Frameworks & Libraries",
+		description: "Tools and runtimes",
+		skills: [
+			{ name: "React", since: "since 2025" },
+			{ name: "Flask", since: "since 2023" },
+			{ name: "Tailwind", since: "since 2024" },
+			{ name: "Pygame", since: "since 2022" },
+			{ name: "Raylib", since: "since 2024" },
+			{ name: "GLSL", since: "since 2025" },
+		],
 	},
-	// {
-	// 	title: "Tools",
-	// 	description: "Microsoft Office",
-	// 	skills: [
-	// 		{ name: "PowerPoint", since: "since 2018" },
-	// 		{ name: "Word", since: "since 2020" },
-	// 		{ name: "Excel", since: "since 2022" },
-	// 		{ name: "Access", since: "since 2024" },
-	// 	],
-	// },
+	{
+		title: "Infrastructure",
+		description: "Servers & deployment",
+		skills: [
+			{ name: "Linux", since: "since 2023" },
+			{ name: "GitHub", since: "since 2022" },
+			{ name: "Raspberry Pi", since: "since 2024" },
+			{ name: "Oracle Cloud", since: "since 2023" },
+		],
+	},
+	{
+		title: "AI & APIs",
+		description: "AI-assisted development",
+		skills: [
+			{ name: "Gemini API", since: "since 2024" },
+			{ name: "OpenAI API", since: "since 2023" },
+			{ name: "Prompt Engineering", since: "since 2024" },
+		],
+	},
 ];
 
 function AboutSection() {
@@ -55,12 +70,7 @@ function AboutSection() {
 					About Me
 				</h1>
 				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
-					I focus mostly on Python and have been actively using it since 2020. I have
-					also used HTML and CSS since 2022, and have some additional hands-on
-					experience with JavaScript.
-					{/*My Microsoft Office experience includes*/}
-					{/*PowerPoint since 2018, Word since 2020, Excel since 2022, and Access*/}
-					{/*since 2024.*/}
+					I'm a self-taught developer with 6 years of Python experience and a tendency to take on projects that go deeper than planned. I enjoy everything from kernel development and hardware simulation to web apps and game jams - as long as there's something genuinely difficult to solve.
 				</p>
 			</motion.div>
 

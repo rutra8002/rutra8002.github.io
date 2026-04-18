@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 const NAV_ITEMS = [
   { key: 'about', label: 'About Me' },
   { key: 'projects', label: 'Projects' },
+  { key: 'achievements', label: 'Achievements' },
   { key: 'contacts', label: 'Contacts' },
 ];
 
