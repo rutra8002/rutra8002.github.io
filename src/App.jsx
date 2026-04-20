@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactsSection from './components/ContactsSection';
-import Achievementssection from './components/Achievementssection.jsx';
+import Achievementssection from './components/Achievementssection';
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');

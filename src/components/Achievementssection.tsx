@@ -1,9 +1,23 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Trophy, Flag, Medal } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 
-const achievements = [
+type AchievementTier = 'gold' | 'silver' | 'bronze';
+
+type Achievement = {
+    placement: string;
+    event: string;
+    organizer: string;
+    year: string;
+    description: string;
+    link: string;
+    tags: string[];
+    tier: AchievementTier;
+};
+
+const achievements: Achievement[] = [
     {
         placement: '2nd place',
         event: 'Motorola Science Cup',
@@ -76,7 +90,14 @@ const achievements = [
     },
 ];
 
-const tierConfig = {
+const tierConfig: Record<
+    AchievementTier,
+    {
+        border: string;
+        icon: LucideIcon;
+        iconColor: string;
+    }
+> = {
     gold: {
         border: 'border-yellow-500/30 hover:border-yellow-400/50',
         icon: Trophy,
@@ -157,7 +178,9 @@ function AchievementsSection() {
                                     </p>
                                     <div className="flex flex-wrap gap-1.5">
                                         {item.tags.map((tag) => (
-                                            <Badge key={tag}>{tag}</Badge>
+                                            <Badge key={tag} variant="default" className="">
+                                                {tag}
+                                            </Badge>
                                         ))}
                                     </div>
                                 </Card>
