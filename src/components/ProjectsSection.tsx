@@ -1,11 +1,38 @@
 import { useState, useEffect } from 'react';
+import type { ChangeEvent, MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Search, Users, User, Cpu, Trophy, Medal } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
 
-const projectsData = [
+type ProjectType = 'personal' | 'group';
+
+type ProjectAchievement = {
+	icon: LucideIcon;
+	color: string;
+	label: string;
+};
+
+type Project = {
+	title: string;
+	description: string;
+	link: string;
+	tags: string[];
+	projectType: ProjectType;
+	featured?: boolean;
+	achievement?: ProjectAchievement;
+};
+
+type ProjectTypeInfo = {
+	label: string;
+	variant: 'personal' | 'group';
+	icon: LucideIcon;
+	description: string;
+};
+
+const projectsData: Project[] = [
 	{
 		title: 'RutraCPU',
 		description:
@@ -83,7 +110,7 @@ const projectsData = [
 	},
 ];
 
-const projectTypeMeta = {
+const projectTypeMeta: Record<ProjectType, ProjectTypeInfo> = {
 	personal: {
 		label: 'Personal',
 		variant: 'personal',
@@ -100,20 +127,22 @@ const projectTypeMeta = {
 
 function ProjectsSection() {
 	const [searchQuery, setSearchQuery] = useState('');
-	const [filtered, setFiltered] = useState(projectsData);
+	const [filtered, setFiltered] = useState<Project[]>(projectsData);
 
 	useEffect(() => {
 		const q = searchQuery.toLowerCase();
+		const nextFiltered = projectsData.filter(
+			(p) =>
+				p.title.toLowerCase().includes(q) ||
+				p.description.toLowerCase().includes(q) ||
+				p.projectType.toLowerCase().includes(q) ||
+				projectTypeMeta[p.projectType].label.toLowerCase().includes(q) ||
+				p.tags.some((t) => t.toLowerCase().includes(q)) ||
+				(p.achievement && p.achievement.label.toLowerCase().includes(q))
+		);
+
 		setFiltered(
-			projectsData.filter(
-				(p) =>
-					p.title.toLowerCase().includes(q) ||
-					p.description.toLowerCase().includes(q) ||
-					p.projectType.toLowerCase().includes(q) ||
-					projectTypeMeta[p.projectType].label.toLowerCase().includes(q) ||
-					p.tags.some((t) => t.toLowerCase().includes(q)) ||
-					(p.achievement && p.achievement.label.toLowerCase().includes(q))
-			)
+			nextFiltered
 		);
 	}, [searchQuery]);
 
@@ -134,7 +163,8 @@ function ProjectsSection() {
 			</div>
 
 			<div className="flex flex-wrap gap-2">
-				{Object.entries(projectTypeMeta).map(([key, type]) => {
+				{(Object.keys(projectTypeMeta) as ProjectType[]).map((key) => {
+					const type = projectTypeMeta[key];
 					const Icon = type.icon;
 					const count = projectsData.filter((p) => p.projectType === key).length;
 					return (
@@ -159,10 +189,11 @@ function ProjectsSection() {
 					className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
 				/>
 				<Input
+					type="text"
 					className="pl-9"
 					placeholder="Search by name, tech, description, or type…"
 					value={searchQuery}
-					onChange={(e) => setSearchQuery(e.target.value)}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
 				/>
 			</div>
 
@@ -215,7 +246,7 @@ function ProjectsSection() {
 										<p className="text-sm text-slate-400 leading-relaxed flex-1">
 											{project.description}
 										</p>
-										{project.achievement && (
+										{project.achievement && AchievementIcon && (
 											<div className="flex items-center gap-1.5">
 												<AchievementIcon size={13} className={project.achievement.color} />
 												<span className={`text-xs font-medium ${project.achievement.color}`}>
@@ -227,7 +258,9 @@ function ProjectsSection() {
 											{project.tags.map((tag) => (
 												<Badge
 													key={tag}
-													onClick={(e) => {
+																variant="default"
+																className=""
+																onClick={(e: MouseEvent<HTMLSpanElement>) => {
 														e.preventDefault();
 														setSearchQuery(tag);
 													}}
