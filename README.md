@@ -1,1 +1,1 @@
-meine website made in react and react, es ist gut
+meine website made in react and typescript, es ist gut
