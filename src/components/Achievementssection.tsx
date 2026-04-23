@@ -79,10 +79,10 @@ const achievements: Achievement[] = [
         tier: 'silver',
     },
     {
-        placement: 'ACM Title',
-        event: 'FIDE Arena Candidate Master',
+        placement: 'AFM Title',
+        event: 'Arena FIDE Master',
         organizer: 'FIDE Online Arena',
-        year: '2025',
+        year: '2026',
         description: 'International chess title awarded by FIDE for consistent tournament performance under time pressure.',
         link: 'https://worldchess.com/profile/863931',
         tags: ['International', 'Individual', 'Chess'],
