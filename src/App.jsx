@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactsSection from './components/ContactsSection';
-import Achievementssection from './components/Achievementssection';
+import AchievementsSection from './components/AchievementsSection.tsx';
 
 function App() {
   const [activeSection, setActiveSection] = useState('about');
@@ -19,7 +19,7 @@ function App() {
     about: <AboutSection />,
     projects: <ProjectsSection />,
     contacts: <ContactsSection />,
-    achievements: <Achievementssection />,
+    achievements: <AchievementsSection />,
   };
 
   return (
