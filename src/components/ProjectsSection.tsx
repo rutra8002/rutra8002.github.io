@@ -63,7 +63,7 @@ const projectsData: Project[] = [
 		title: 'Portfolio Website',
 		description: 'This site. A modern, animated portfolio built with React, Tailwind, and Framer Motion.',
 		link: 'https://github.com/rutra8002/rutra8002.github.io',
-		tags: ['React', 'CSS', 'JavaScript'],
+		tags: ['React', 'CSS', 'JavaScript', 'TypeScript'],
 		projectType: 'personal',
 	},
 	{
