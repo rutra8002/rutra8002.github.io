@@ -88,6 +88,16 @@ const achievements: Achievement[] = [
         tags: ['International', 'Individual', 'Chess'],
         tier: 'gold',
     },
+    {
+        placement: 'Distinction',
+        event: 'Mathematical Kangaroo',
+        organizer: 'Kangourou sans Frontières',
+        year: '2026',
+        description: "Awarded distinction in one of the world's largest mathematics competitions, held annually across over 100 countries.",
+        link: 'https://www.aksf.org/',
+        tags: ['International', 'Individual', 'Maths'],
+        tier: 'bronze'
+    }
 ];
 
 const tierConfig: Record<
