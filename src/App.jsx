@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
 import ProjectsSection from './components/ProjectsSection';
-import ContactsSection from './components/ContactsSection';
+import ContactsSection from './components/ContactsSection.tsx';
 import AchievementsSection from './components/AchievementsSection.tsx';
 
 function App() {
