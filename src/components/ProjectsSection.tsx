@@ -1,29 +1,15 @@
-import { useState, useEffect } from 'react';
-import type { ChangeEvent, MouseEvent } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import type { ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Search, Users, User, Cpu, Trophy, Medal } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
+import ProjectDialog from './ProjectDialog';
+import type { Project } from './ProjectDialog';
 
 type ProjectType = 'personal' | 'group';
-
-type ProjectAchievement = {
-	icon: LucideIcon;
-	color: string;
-	label: string;
-};
-
-type Project = {
-	title: string;
-	description: string;
-	link: string;
-	tags: string[];
-	projectType: ProjectType;
-	featured?: boolean;
-	achievement?: ProjectAchievement;
-};
 
 type ProjectTypeInfo = {
 	label: string;
@@ -41,6 +27,7 @@ const projectsData: Project[] = [
 		tags: ['Verilog', 'Python', 'ASM', 'Compiler', 'HDL'],
 		projectType: 'personal',
 		featured: true,
+		media: [],
 	},
 	{
 		title: 'RutraOS',
@@ -50,6 +37,7 @@ const projectsData: Project[] = [
 		tags: ['C', 'x86 Assembly', 'OS'],
 		projectType: 'personal',
 		featured: true,
+		media: [],
 	},
 	{
 		title: 'Quiz App',
@@ -58,6 +46,7 @@ const projectsData: Project[] = [
 		link: 'https://github.com/rutra8002/quizapp',
 		tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
 		projectType: 'personal',
+		media: [],
 	},
 	{
 		title: 'Portfolio Website',
@@ -65,6 +54,7 @@ const projectsData: Project[] = [
 		link: 'https://github.com/rutra8002/rutra8002.github.io',
 		tags: ['React', 'CSS', 'JavaScript', 'TypeScript'],
 		projectType: 'personal',
+		media: [],
 	},
 	{
 		title: 'Jeff The Grappler',
@@ -73,6 +63,7 @@ const projectsData: Project[] = [
 		link: 'https://github.com/rutra8002/jeff_the_grappler',
 		tags: ['Python', 'Raylib', 'GLSL'],
 		projectType: 'personal',
+		media: [],
 	},
 	{
 		title: 'Pixel Racers',
@@ -82,6 +73,9 @@ const projectsData: Project[] = [
 		tags: ['Python', 'Pygame'],
 		projectType: 'group',
 		achievement: { icon: Trophy, color: 'text-yellow-400', label: '2nd place · Motorola Science Cup 2025' },
+		media: [
+			{ type: 'video', src: 'https://www.youtube.com/embed/9RUm_Z_BEGM', caption: 'Gameplay demo (YouTube)' },
+		],
 	},
 	{
 		title: 'Optyka',
@@ -91,6 +85,9 @@ const projectsData: Project[] = [
 		tags: ['Python', 'Pygame', 'NumPy'],
 		projectType: 'group',
 		achievement: { icon: Medal, color: 'text-orange-400', label: '7th place · Motorola Science Cup 2024' },
+		media: [
+			{ type: 'video', src: 'https://www.youtube.com/embed/oRm5Wtt9y7Y', caption: 'Demo video (YouTube)' },
+		],
 	},
 	{
 		title: 'One Hit Wonder',
@@ -98,14 +95,20 @@ const projectsData: Project[] = [
 		link: 'https://github.com/Saniccxx/One-Hit-Wonder',
 		tags: ['C++', 'Raylib', 'GLSL'],
 		projectType: 'group',
+		media: [],
 	},
 	{
 		title: 'Storm Survival',
 		description:
-			'Realistic real-time apocalypse survival game. Built during the Brackeys Game Jam - shipped in one week from idea to playable prototype.',
+			'A game built during the Brackeys Game Jam - shipped in one week from idea to playable prototype.',
+		detail:
+			'Storm Survival is a realistic real-time apocalypse survival game. Gather resources, fight enemies and loot for weapons. Get stronger every day and with every wave of enemies. Explore the open world and enjoy the cutting edge pixel art graphics our graphic design team prepared.',
 		link: 'https://github.com/V8Enthusiast/StormSurvival',
 		tags: ['Python', 'Pygame'],
 		projectType: 'group',
+		media: [
+			{ type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' },
+		],
 	},
 	{
 		title: 'NukeTown',
@@ -114,6 +117,7 @@ const projectsData: Project[] = [
 		link: 'https://github.com/MalyszekTobias/NukeTown',
 		tags: ['Python', 'Raylib', 'GLSL'],
 		projectType: 'group',
+		media: [],
 	},
 ];
 
@@ -133,27 +137,51 @@ const projectTypeMeta: Record<ProjectType, ProjectTypeInfo> = {
 };
 
 function ProjectsSection() {
-	const [searchQuery, setSearchQuery] = useState('');
-	const [filtered, setFiltered] = useState<Project[]>(projectsData);
+	const [searchQuery, setSearchQuery]       = useState('');
+	const [filtered, setFiltered]             = useState<Project[]>(projectsData);
+	const [activeProject, setActiveProject]   = useState<Project | null>(null);
+	const [mediaIndex, setMediaIndex]         = useState(0);
+	const lastFocusRef                        = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
 		const q = searchQuery.toLowerCase();
-		const nextFiltered = projectsData.filter(
-			(p) =>
-				p.title.toLowerCase().includes(q) ||
-				p.description.toLowerCase().includes(q) ||
-				p.projectType.toLowerCase().includes(q) ||
-				projectTypeMeta[p.projectType].label.toLowerCase().includes(q) ||
-				p.tags.some((t) => t.toLowerCase().includes(q)) ||
-				(p.achievement && p.achievement.label.toLowerCase().includes(q))
-		);
-
 		setFiltered(
-			nextFiltered
+			projectsData.filter(
+				(p) =>
+					p.title.toLowerCase().includes(q) ||
+					p.description.toLowerCase().includes(q) ||
+					p.projectType.toLowerCase().includes(q) ||
+					projectTypeMeta[p.projectType as ProjectType].label.toLowerCase().includes(q) ||
+					p.tags.some((t) => t.toLowerCase().includes(q)) ||
+					(p.achievement && p.achievement.label.toLowerCase().includes(q))
+			)
 		);
 	}, [searchQuery]);
 
+	function openDialog(project: Project, trigger: HTMLDivElement) {
+		lastFocusRef.current = trigger;
+		setActiveProject(project);
+		setMediaIndex(0);
+	}
+
+	function closeDialog() {
+		setActiveProject(null);
+		setMediaIndex(0);
+		setTimeout(() => lastFocusRef.current?.focus(), 50);
+	}
+
+	function handleMediaNext() {
+		if (!activeProject?.media?.length) return;
+		setMediaIndex((i) => (i + 1) % activeProject.media!.length);
+	}
+
+	function handleMediaPrev() {
+		if (!activeProject?.media?.length) return;
+		setMediaIndex((i) => (i - 1 + activeProject.media!.length) % activeProject.media!.length);
+	}
+
 	return (
+		<>
 		<motion.section
 			initial={{ opacity: 0, y: 24 }}
 			animate={{ opacity: 1, y: 0 }}
@@ -221,13 +249,20 @@ function ProjectsSection() {
 								transition={{ delay: i * 0.05, duration: 0.3 }}
 								className={project.featured ? 'sm:col-span-2' : ''}
 							>
-								<a
-									href={project.link}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="block h-full"
-								>
-									<Card className={`h-full p-5 flex flex-col gap-3 border-white/10 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-violet-900/30 hover:shadow-xl transition-all duration-200 cursor-pointer group ${project.featured ? 'border-violet-500/25 bg-violet-950/10' : ''}`}>
+									<Card
+										tabIndex={0}
+										role="button"
+										aria-label={`Open ${project.title} details`}
+										onClick={(e: MouseEvent<HTMLDivElement>) => openDialog(project, e.currentTarget)}
+										onKeyDown={(e: KeyboardEvent<HTMLDivElement>) => {
+											if (e.key === 'Enter' || e.key === ' ') {
+												e.preventDefault();
+												openDialog(project, e.currentTarget);
+											}
+										}}
+										className={`h-full p-5 flex flex-col gap-3 border-white/10 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-violet-900/30 hover:shadow-xl transition-all duration-200 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60 ${
+											project.featured ? 'border-violet-500/25 bg-violet-950/10' : ''
+										}`}>
 										<div className="flex items-start justify-between gap-2">
 											<div className="flex flex-col gap-2">
 												<div className="flex items-center gap-2">
@@ -248,9 +283,10 @@ function ProjectsSection() {
 											<ExternalLink
 												size={14}
 												className="text-slate-600 group-hover:text-violet-400 transition-colors shrink-0 mt-1"
+												aria-hidden="true"
 											/>
 										</div>
-										<p className="text-sm text-slate-400 leading-relaxed flex-1">
+										<p className="text-sm text-slate-400 leading-relaxed flex-1 line-clamp-3">
 											{project.description}
 										</p>
 										{project.achievement && AchievementIcon && (
@@ -268,7 +304,7 @@ function ProjectsSection() {
 																variant="default"
 																className=""
 																onClick={(e: MouseEvent<HTMLSpanElement>) => {
-														e.preventDefault();
+														e.stopPropagation();
 														setSearchQuery(tag);
 													}}
 												>
@@ -277,7 +313,6 @@ function ProjectsSection() {
 											))}
 										</div>
 									</Card>
-								</a>
 							</motion.div>
 						);
 					})}
@@ -290,6 +325,15 @@ function ProjectsSection() {
 				</p>
 			)}
 		</motion.section>
+
+			<ProjectDialog
+				project={activeProject}
+				mediaIndex={mediaIndex}
+				onClose={closeDialog}
+				onMediaPrev={handleMediaPrev}
+				onMediaNext={handleMediaNext}
+			/>
+		</>
 	);
 }
 
