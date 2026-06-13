@@ -93,6 +93,13 @@ const projectsData: Project[] = [
 		achievement: { icon: Medal, color: 'text-orange-400', label: '7th place · Motorola Science Cup 2024' },
 	},
 	{
+		title: 'One Hit Wonder',
+		description: 'You got trapped in a dungeon because you were too good at playing the flute. Now you have to fight your way out using your musical skills. Can you escape the dungeon and become the One Hit Wonder? Built for Major Jam.',
+		link: 'https://github.com/Saniccxx/One-Hit-Wonder',
+		tags: ['C++', 'Raylib', 'GLSL'],
+		projectType: 'group',
+	},
+	{
 		title: 'Storm Survival',
 		description:
 			'Realistic real-time apocalypse survival game. Built during the Brackeys Game Jam - shipped in one week from idea to playable prototype.',
