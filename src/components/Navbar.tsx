@@ -2,14 +2,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 
-const NAV_ITEMS = [
+type NavItemKey = 'about' | 'projects' | 'achievements' | 'contacts';
+
+type NavItem = {
+    key: NavItemKey;
+    label: string;
+};
+
+const NAV_ITEMS: NavItem[] = [
   { key: 'about', label: 'About Me' },
   { key: 'projects', label: 'Projects' },
   { key: 'achievements', label: 'Achievements' },
   { key: 'contacts', label: 'Contacts' },
 ];
 
-function Navbar({ activeSection, setActiveSection, drawerOpen, setDrawerOpen, handleNavClick }) {
+type NavbarProps = {
+    activeSection: NavItemKey;
+    setActiveSection: (section: NavItemKey) => void;
+    drawerOpen: boolean;
+    setDrawerOpen: (open: boolean) => void;
+    handleNavClick: (section: NavItemKey) => void;
+};
+
+function Navbar({
+                    activeSection,
+                    setActiveSection,
+                    drawerOpen,
+                    setDrawerOpen,
+                    handleNavClick,
+                }: NavbarProps) {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/5 shadow-lg">
@@ -102,4 +123,3 @@ function Navbar({ activeSection, setActiveSection, drawerOpen, setDrawerOpen, ha
 }
 
 export default Navbar;
-
