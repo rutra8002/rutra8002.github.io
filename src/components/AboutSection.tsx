@@ -2,7 +2,18 @@ import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
-const languageGroups = [
+interface Skill {
+	name: string;
+	since: string;
+}
+
+interface LanguageGroup {
+	title: string;
+	description: string;
+	skills: Skill[];
+}
+
+const languageGroups: LanguageGroup[] = [
 	{
 		title: "Languages",
 		description: "Programming languages",
