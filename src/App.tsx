@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactElement } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import AboutSection from './components/AboutSection';
@@ -6,16 +6,18 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactsSection from './components/ContactsSection';
 import AchievementsSection from './components/AchievementsSection';
 
-function App() {
-  const [activeSection, setActiveSection] = useState('about');
-  const [drawerOpen, setDrawerOpen] = useState(false);
+type Section = 'about' | 'projects' | 'contacts' | 'achievements';
 
-  const handleNavClick = (section) => {
+function App() {
+  const [activeSection, setActiveSection] = useState<Section>('about');
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+
+  const handleNavClick = (section: Section) => {
     setActiveSection(section);
     setDrawerOpen(false);
   };
 
-  const sections = {
+  const sections: Record<Section, ReactElement> = {
     about: <AboutSection />,
     projects: <ProjectsSection />,
     contacts: <ContactsSection />,
