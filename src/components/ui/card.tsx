@@ -1,11 +1,8 @@
 import * as React from "react"
 
-import { cn } from "@/lib/utils.ts"
+import { cn } from "@/lib/utils"
 
-function Card({
-  className,
-  ...props
-}) {
+function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
@@ -16,10 +13,7 @@ function Card({
   );
 }
 
-function CardHeader({
-  className,
-  ...props
-}) {
+function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
@@ -30,10 +24,7 @@ function CardHeader({
   );
 }
 
-function CardTitle({
-  className,
-  ...props
-}) {
+function CardTitle({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
     <h3
       className={cn(
@@ -44,10 +35,7 @@ function CardTitle({
   );
 }
 
-function CardContent({
-  className,
-  ...props
-}) {
+function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
