@@ -2,7 +2,7 @@
 
 A modern, animated personal portfolio built with React, TypeScript, Tailwind CSS, and Framer Motion.
 
-🔗 Live: [rutra.me](https://rutra.me)
+Live: [rutra.me](https://rutra.me)
 
 ## Features
 
