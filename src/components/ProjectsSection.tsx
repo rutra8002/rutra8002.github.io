@@ -223,7 +223,7 @@ function ProjectsSection() {
 					/>
 				</div>
 
-			<motion.div layout className="grid gap-4 sm:grid-cols-2">
+				<motion.div layout className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(280px,1fr))] grid-flow-dense">
 				<AnimatePresence mode="popLayout">
 					{filtered.map((project, i) => {
 						const type = projectTypeMeta[project.projectType];
