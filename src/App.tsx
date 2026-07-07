@@ -6,29 +6,29 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactsSection from './components/ContactsSection';
 import AchievementsSection from './components/AchievementsSection';
 import TerminalDock from './components/TerminalDock';
+import ShaderBackground from './components/ShaderBackground';
 
 type Section = 'about' | 'projects' | 'contacts' | 'achievements';
 
 function App() {
-  const [activeSection, setActiveSection] = useState<Section>('about');
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+    const [activeSection, setActiveSection] = useState<Section>('about');
+    const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
-  const handleNavClick = (section: Section) => {
-    setActiveSection(section);
-    setDrawerOpen(false);
-  };
+    const handleNavClick = (section: Section) => {
+        setActiveSection(section);
+        setDrawerOpen(false);
+    };
 
-  const sections: Record<Section, ReactElement> = {
-    about: <AboutSection />,
-    projects: <ProjectsSection />,
-    contacts: <ContactsSection />,
-    achievements: <AchievementsSection />,
-  };
+    const sections: Record<Section, ReactElement> = {
+        about: <AboutSection />,
+        projects: <ProjectsSection />,
+        contacts: <ContactsSection />,
+        achievements: <AchievementsSection />,
+    };
 
     return (
-        <div className="min-h-screen font-mono bg-[#0a0b10] text-slate-200 selection:bg-emerald-500 selection:text-black transition-colors duration-300">
-            <div className="fixed inset-0 -z-10 bg-[linear-gradient(to_right,#141620_1px,transparent_1px),linear-gradient(to_bottom,#141620_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-60" />
-
+        <div className="min-h-screen font-mono text-slate-200 selection:bg-emerald-500 selection:text-black transition-colors duration-300">
+            <ShaderBackground />
 
             <Navbar
                 activeSection={activeSection}

@@ -217,7 +217,7 @@ function ProjectsSection() {
 					<Input
 						type="text"
 						className="pl-9"
-						placeholder="filter queries (e.g., compiler, verilog, python)..."
+						placeholder="filter queries"
 						value={searchQuery}
 						onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
 					/>

@@ -67,7 +67,7 @@ function AboutSection() {
 				<h1 className="text-3xl font-black text-white tracking-tight sm:text-4xl">
 					About Me
 				</h1>
-				<div className="border-l-2 border-emerald-500/40 pl-4 py-1 max-w-2xl text-sm leading-relaxed text-slate-400">
+				<div className="py-1 text-sm leading-relaxed text-slate-400">
 					I'm a self-taught developer with 6 years of Python experience and a tendency to take on projects that go deeper than planned. I enjoy everything from kernel development and hardware simulation to web apps and game jams - as long as there's something genuinely difficult to solve.
 				</div>
 			</div>
