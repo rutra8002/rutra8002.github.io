@@ -27,7 +27,7 @@ export default function TerminalDock({ onNavigate }: TerminalDockProps) {
 
         switch (cleanCmd) {
             case 'help':
-                reply = 'Available commands: help | about | projects | awards | contact | clear';
+                reply = 'Available commands: help | about | projects | achievements | contact | clear';
                 break;
             case 'about':
                 onNavigate('about');
