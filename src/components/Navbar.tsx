@@ -10,10 +10,10 @@ type NavItem = {
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { key: 'about', label: 'About Me' },
-  { key: 'projects', label: 'Projects' },
-  { key: 'achievements', label: 'Achievements' },
-  { key: 'contacts', label: 'Contacts' },
+    { key: 'about', label: 'About Me' },
+    { key: 'projects', label: 'Projects' },
+    { key: 'achievements', label: 'Achievements' },
+    { key: 'contacts', label: 'Contacts' },
 ];
 
 type NavbarProps = {
@@ -33,14 +33,17 @@ function Navbar({
     return (
         <>
             <nav className="fixed top-0 left-0 w-full z-50 border-b backdrop-blur-md bg-[#0c0d14]/95 border-white/5">
-                <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+                <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
                     <div
                         className="flex items-center gap-2 cursor-pointer group"
-                        onClick={() => setActiveSection('about')}
+                        onClick={() => {
+                            setActiveSection('about');
+                            setDrawerOpen(false);
+                        }}
                     >
-            <span className="font-black tracking-tighter text-base text-white group-hover:text-emerald-400 transition-colors">
-              rutra.me
-            </span>
+                        <span className="font-black tracking-tighter text-base text-white group-hover:text-emerald-400 transition-colors">
+                          rutra.me
+                        </span>
                     </div>
 
                     <div className="hidden sm:flex items-center gap-4">
@@ -68,13 +71,54 @@ function Navbar({
                     </div>
 
                     <button
-                        className="sm:hidden p-2 text-slate-400 hover:text-white transition-colors"
+                        className="sm:hidden p-2 text-slate-400 hover:text-white transition-colors z-50 relative"
                         onClick={() => setDrawerOpen(!drawerOpen)}
+                        aria-label="Toggle Menu"
                     >
                         {drawerOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
                     </button>
                 </div>
             </nav>
+
+            <AnimatePresence>
+                {drawerOpen && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setDrawerOpen(false)}
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 sm:hidden"
+                        />
+
+                        <motion.div
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'tween', duration: 0.25 }}
+                            className="fixed top-0 right-0 bottom-0 w-64 bg-[#0c0d14]/98 border-l border-white/5 z-40 sm:hidden flex flex-col pt-24 px-4 gap-2 shadow-2xl"
+                        >
+                            {NAV_ITEMS.map((item) => (
+                                <button
+                                    key={item.key}
+                                    onClick={() => {
+                                        setActiveSection(item.key);
+                                        setDrawerOpen(false);
+                                    }}
+                                    className={cn(
+                                        'w-full text-left px-4 py-3 text-sm font-mono font-bold tracking-wider rounded-md transition-colors',
+                                        activeSection === item.key
+                                            ? 'bg-slate-900/60 text-emerald-400 border-l-2 border-emerald-500'
+                                            : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                                    )}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </>
     );
 }
