@@ -29,97 +29,54 @@ function Navbar({
                     setActiveSection,
                     drawerOpen,
                     setDrawerOpen,
-                    handleNavClick,
                 }: NavbarProps) {
-  return (
-    <>
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-slate-950/80 border-b border-white/5 shadow-lg">
-        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-violet-400 font-bold text-lg tracking-tight select-none" onClick={() => setActiveSection('about')}>rutra.me</span>
+    return (
+        <>
+            <nav className="fixed top-0 left-0 w-full z-50 border-b backdrop-blur-md bg-[#0c0d14]/95 border-white/5">
+                <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+                    <div
+                        className="flex items-center gap-2 cursor-pointer group"
+                        onClick={() => setActiveSection('about')}
+                    >
+            <span className="font-black tracking-tighter text-base text-white group-hover:text-emerald-400 transition-colors">
+              rutra.me
+            </span>
+                    </div>
 
-					{/* Desktop nav */}
-					<div className="hidden sm:flex gap-1">
-						{NAV_ITEMS.map((item) => (
-							<button
-								key={item.key}
-								onClick={() => setActiveSection(item.key)}
-								className={cn(
-									'relative px-5 py-2.5 text-sm font-medium transition-colors',
-									activeSection === item.key
-										? 'text-white'
-										: 'text-slate-400 hover:text-slate-200'
-								)}
-							>
-								<span className="relative z-10">{item.label}</span>
-								{activeSection === item.key && (
-									<>
-										<motion.span
-											layoutId="nav-active-tab"
-											className="absolute inset-0 bg-slate-900/95"
-											transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
-										/>
-										<motion.span
-											layoutId="nav-underline"
-											className="absolute left-1/2 -translate-x-1/2 bottom-0 h-0.5 w-16 bg-violet-500"
-											transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
-										/>
-									</>
-								)}
-							</button>
-						))}
-					</div>
+                    <div className="hidden sm:flex items-center gap-4">
+                        <div className="flex gap-0.5">
+                            {NAV_ITEMS.map((item) => (
+                                <button
+                                    key={item.key}
+                                    onClick={() => setActiveSection(item.key as NavItemKey)}
+                                    className={cn(
+                                        'relative px-4 py-2 text-xs font-mono font-bold tracking-wider transition-colors',
+                                        activeSection === item.key ? 'text-white' : 'text-slate-500 hover:text-slate-300'
+                                    )}
+                                >
+                                    <span className="relative z-10">{item.label}</span>
+                                    {activeSection === item.key && (
+                                        <motion.span
+                                            layoutId="nav-active-box"
+                                            className="absolute inset-0 border-t-2 border-emerald-500 bg-slate-900/60"
+                                            transition={{ type: 'spring', bounce: 0.1, duration: 0.3 }}
+                                        />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-          {/* Mobile toggle */}
-          <button
-            className="sm:hidden p-2 text-slate-300 hover:text-white transition-colors"
-            onClick={() => setDrawerOpen(!drawerOpen)}
-            aria-label="Toggle menu"
-          >
-            {drawerOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {drawerOpen && (
-          <>
-            <motion.div
-              key="backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40 bg-black/50 sm:hidden"
-              onClick={() => setDrawerOpen(false)}
-            />
-            <motion.div
-              key="drawer"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', bounce: 0, duration: 0.35 }}
-              className="fixed top-0 right-0 h-full w-56 z-50 bg-slate-950 border-l border-white/10 flex flex-col pt-20 px-4 gap-2 sm:hidden"
-            >
-              {NAV_ITEMS.map((item) => (
-                <button
-                  key={item.key}
-                  onClick={() => handleNavClick(item.key)}
-                  className={cn(
-                    'w-full text-left px-4 py-3 rounded-md text-sm font-medium transition-colors',
-                    activeSection === item.key
-                      ? 'bg-violet-600/20 text-white border border-violet-500/30'
-                      : 'text-slate-400 hover:bg-white/5 hover:text-white'
-                  )}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
+                    <button
+                        className="sm:hidden p-2 text-slate-400 hover:text-white transition-colors"
+                        onClick={() => setDrawerOpen(!drawerOpen)}
+                    >
+                        {drawerOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+                    </button>
+                </div>
+            </nav>
+        </>
+    );
 }
 
 export default Navbar;

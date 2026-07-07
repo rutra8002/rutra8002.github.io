@@ -1,7 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, ChevronLeft, ChevronRight, Users, User, Trophy, Medal, Cpu } from 'lucide-react';
-import { Badge } from './ui/badge';
+import { X, ExternalLink, ChevronLeft, ChevronRight, Users, User, Cpu } from 'lucide-react';
 
 type ProjectType = 'personal' | 'group';
 
@@ -111,8 +110,8 @@ export default function ProjectDialog({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.22 }}
-                        className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
+                        transition={{ duration: 0.15 }}
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
                         onClick={onClose}
                         aria-hidden="true"
                     />
@@ -121,39 +120,44 @@ export default function ProjectDialog({
                         key="dialog"
                         ref={dialogRef}
                         role="dialog"
-                        aria-Dialog="true"
+                        aria-modal="true"
                         aria-labelledby="project-dialog-title"
-                        initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                        initial={{ opacity: 0, scale: 0.99, y: 4 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.96, y: 16 }}
-                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 pointer-events-none"
+                        exit={{ opacity: 0, scale: 0.99, y: 4 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 pointer-events-none font-mono"
                     >
                         <div
-                            className="relative w-full max-w-5xl max-h-[90vh] rounded-2xl border border-white/10 bg-slate-950/95 shadow-2xl shadow-black/60 overflow-hidden pointer-events-auto"
+                            className="relative w-full max-w-5xl max-h-[90vh] rounded-none border border-slate-800 bg-[#0d0e15] shadow-2xl overflow-hidden pointer-events-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <button
-                                ref={closeRef}
-                                onClick={onClose}
-                                aria-label="Close"
-                                className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full border border-white/10 bg-slate-900/90 text-slate-400 hover:text-white hover:border-violet-500/50 transition-all"
-                            >
-                                <X size={16} />
-                            </button>
+                            <div className="flex items-center justify-between px-4 h-9 bg-slate-950 border-b border-white/5 select-none">
+                                <span className="text-[10px] text-slate-500 font-bold tracking-wider">
+                                    Project Info
+                                </span>
+                                <button
+                                    ref={closeRef}
+                                    onClick={onClose}
+                                    aria-label="Close"
+                                    className="w-5 h-5 flex items-center justify-center border border-slate-800 text-slate-400 hover:text-white hover:border-emerald-500/50 transition-all text-xs rounded-none bg-transparent"
+                                >
+                                    <X size={12} />
+                                </button>
+                            </div>
 
-                            <div className={`grid h-full ${hasMedia ? 'md:grid-cols-[1.3fr_1fr]' : 'grid-cols-1'} max-h-[90vh]`}>
+                            <div className={`grid h-full ${hasMedia ? 'md:grid-cols-[1.2fr_1fr]' : 'grid-cols-1'} max-h-[calc(90vh-2.25rem)]`}>
 
                                 {hasMedia && (
-                                    <div className="flex flex-col border-r border-white/10 min-h-0">
-                                        <div className="relative flex-1 bg-slate-900/80 grid place-items-center min-h-60 max-h-105 md:max-h-none overflow-hidden">
+                                    <div className="flex flex-col border-r border-slate-800 min-h-0 bg-black/40">
+                                        <div className="relative flex-1 grid place-items-center min-h-60 max-h-105 md:max-h-none overflow-hidden">
                                             <AnimatePresence mode="wait">
                                                 <motion.div
                                                     key={mediaIndex}
-                                                    initial={{ opacity: 0, x: 18 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    exit={{ opacity: 0, x: -18 }}
-                                                    transition={{ duration: 0.22 }}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{ duration: 0.15 }}
                                                     className="w-full h-full flex items-center justify-center"
                                                 >
                                                     {currentMedia?.type === 'video' ? (
@@ -168,110 +172,92 @@ export default function ProjectDialog({
                                                         <img
                                                             src={currentMedia?.src}
                                                             alt={currentMedia?.caption || `${project.title} screenshot`}
-                                                            className="w-full h-full object-contain"
-                                                            style={{ background: 'linear-gradient(135deg, #0d2530, #071820)' }}
+                                                            className="w-full h-full object-contain bg-slate-950/40"
                                                         />
                                                     )}
                                                 </motion.div>
                                             </AnimatePresence>
 
+                                            {/* Step Control Switches */}
                                             {media.length > 1 && (
                                                 <>
                                                     <button
                                                         onClick={onMediaPrev}
-                                                        aria-label="Previous image"
-                                                        className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-slate-950/80 border border-white/10 text-slate-400 hover:text-white hover:border-violet-500/50 transition-all"
+                                                        aria-label="Previous Frame"
+                                                        className="absolute left-2 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center bg-slate-950 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all rounded-none"
                                                     >
-                                                        <ChevronLeft size={16} />
+                                                        <ChevronLeft size={12} />
                                                     </button>
                                                     <button
                                                         onClick={onMediaNext}
-                                                        aria-label="Next image"
-                                                        className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-slate-950/80 border border-white/10 text-slate-400 hover:text-white hover:border-violet-500/50 transition-all"
+                                                        aria-label="Next Frame"
+                                                        className="absolute right-2 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center bg-slate-950 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-all rounded-none"
                                                     >
-                                                        <ChevronRight size={16} />
+                                                        <ChevronRight size={12} />
                                                     </button>
                                                 </>
                                             )}
                                         </div>
 
-                                        <div className="px-4 py-3 border-t border-white/10 flex flex-col gap-1.5">
-                                            {media.length > 1 && (
-                                                <div className="flex items-center gap-1.5">
-                                                    {media.map((_, i) => (
-                                                        <button
-                                                            key={i}
-                                                            onClick={() => {
-                                                                const diff = i - mediaIndex;
-                                                                if (diff > 0) for (let j = 0; j < diff; j++) onMediaNext();
-                                                                else for (let j = 0; j < -diff; j++) onMediaPrev();
-                                                            }}
-                                                            aria-label={`Go to media ${i + 1}`}
-                                                            className={`w-1.5 h-1.5 rounded-full transition-all ${
-                                                                i === mediaIndex
-                                                                    ? 'bg-violet-400 w-4'
-                                                                    : 'bg-slate-600 hover:bg-slate-400'
-                                                            }`}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            )}
-                                            {currentMedia?.caption && (
-                                                <p className="text-xs text-slate-500 font-mono tracking-wide truncate">
+                                        {/* Frame Telemetry Status Line */}
+                                        <div className="px-4 py-2 border-t border-slate-800 flex items-center justify-between gap-4 text-[10px]">
+                                            {currentMedia?.caption ? (
+                                                <span className="text-slate-500 font-mono tracking-wide truncate">
                                                     {currentMedia.caption}
-                                                </p>
+                                                </span>
+                                            ) : (
+                                                <span className="text-slate-600 font-mono tracking-wide">
+                                                    // NO_CAPTION_DATA
+                                                </span>
+                                            )}
+                                            {media.length > 1 && (
+                                                <span className="text-emerald-500 font-bold shrink-0">
+                                                    Frame {mediaIndex + 1}/{media.length}
+                                                </span>
                                             )}
                                         </div>
                                     </div>
                                 )}
 
-                                <div className="flex flex-col gap-5 p-6 overflow-y-auto">
-                                    <div className="flex items-center gap-2 text-xs text-slate-400">
-                                        {project.projectType === 'personal'
-                                            ? <User size={13} />
-                                            : <Users size={13} />}
-                                        <span className="capitalize">{project.projectType}</span>
-                                        {project.featured && (
-                                            <>
-                                                <span className="text-slate-600">·</span>
-                                                <Cpu size={13} className="text-violet-400" />
-                                                <span className="text-violet-400">Featured</span>
-                                            </>
-                                        )}
+                                <div className="flex flex-col gap-4 p-5 overflow-y-auto bg-[#0a0b10]">
+                                    <div className="flex items-center gap-3 text-[10px] text-slate-500 border-b border-white/5 pb-2">
+                                        <div className="flex items-center gap-1 font-bold">
+                                            {project.projectType === 'personal' ? <User size={11} /> : <Users size={11} />}
+                                            <span>Type: {project.projectType}</span>
+                                        </div>
                                     </div>
 
-                                    <h2
-                                        id="project-dialog-title"
-                                        className="text-2xl font-bold text-slate-100 leading-tight"
-                                    >
+                                    <h2 id="project-dialog-title" className="text-xl font-black text-slate-100 tracking-tight">
                                         {project.title}
                                     </h2>
 
-                                    <p className="text-sm text-slate-400 leading-relaxed">
-                                        {project.description}
-                                    </p>
-
-                                    {project.detail && (
-                                        <p className="text-sm text-slate-400 leading-relaxed">
-                                            {project.detail}
-                                        </p>
-                                    )}
+                                    <div className="text-xs text-slate-400 leading-relaxed space-y-3 font-mono">
+                                        <p>{project.description}</p>
+                                        {project.detail && (
+                                            <p className="border-l border-slate-800 pl-3 text-slate-500">
+                                                {project.detail}
+                                            </p>
+                                        )}
+                                    </div>
 
                                     {project.achievement && (() => {
                                         const AchIcon = project.achievement.icon;
                                         return (
-                                            <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-slate-900/60 px-3 py-2">
-                                                <AchIcon size={14} className={project.achievement.color} />
-                                                <span className={`text-xs font-medium ${project.achievement.color}`}>
-                                                  {project.achievement.label}
-                                                </span>
+                                            <div className="text-[11px] font-bold border border-emerald-500/10 bg-emerald-950/10 p-2 text-slate-300 flex items-center gap-2">
+                                                {AchIcon && <AchIcon size={12} className={project.achievement.color} />}
+                                                <span>{project.achievement.label}</span>
                                             </div>
                                         );
                                     })()}
 
-                                    <div className="flex flex-wrap gap-1.5">
+                                    <div className="flex flex-wrap gap-1 py-1">
                                         {project.tags.map((tag) => (
-                                            <Badge key={tag} variant="default">{tag}</Badge>
+                                            <span
+                                                key={tag}
+                                                className="text-[10px] bg-slate-900 border border-slate-800 text-slate-400 px-2 py-0.5 rounded-none"
+                                            >
+                                                {tag}
+                                            </span>
                                         ))}
                                     </div>
 
@@ -279,10 +265,10 @@ export default function ProjectDialog({
                                         href={project.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="mt-auto inline-flex items-center gap-2 self-start px-4 py-2.5 rounded-full border border-violet-500/40 text-violet-300 text-sm font-medium hover:bg-violet-500/10 hover:border-violet-400/70 transition-all"
+                                        className="mt-4 inline-flex items-center gap-2 self-start px-3 py-1.5 border border-emerald-500/30 bg-emerald-950/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 hover:border-emerald-400 transition-all rounded-none"
                                     >
-                                        View source
-                                        <ExternalLink size={13} />
+                                        Source Code
+                                        <ExternalLink size={11} />
                                     </a>
                                 </div>
                             </div>

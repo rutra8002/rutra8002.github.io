@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
-import { Badge } from "./ui/badge";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from './ui/card';
 
 type Skill = {
 	name: string;
@@ -48,6 +46,7 @@ const languageGroups: LanguageGroup[] = [
 			{ name: "GitHub", since: "since 2022" },
 			{ name: "Raspberry Pi", since: "since 2024" },
 			{ name: "Oracle Cloud", since: "since 2023" },
+			{ name: "Docker", since: "since 2026" },
 		],
 	},
 	{
@@ -63,86 +62,41 @@ const languageGroups: LanguageGroup[] = [
 
 function AboutSection() {
 	return (
-		<motion.section
-			initial={{ opacity: 0, y: 24 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5 }}
-			className="flex flex-col gap-6"
-		>
-			<motion.div
-				initial={{ opacity: 0, y: 24 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-				className="flex flex-col gap-2"
-			>
-				<span className="text-xs font-semibold tracking-widest uppercase text-violet-400">
-					Profile
-				</span>
-				<h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
+		<section className="flex flex-col gap-8 font-mono">
+			<div className="flex flex-col gap-3">
+				<h1 className="text-3xl font-black text-white tracking-tight sm:text-4xl">
 					About Me
 				</h1>
-				<p className="text-slate-300 text-base leading-relaxed max-w-lg">
+				<div className="border-l-2 border-emerald-500/40 pl-4 py-1 max-w-2xl text-sm leading-relaxed text-slate-400">
 					I'm a self-taught developer with 6 years of Python experience and a tendency to take on projects that go deeper than planned. I enjoy everything from kernel development and hardware simulation to web apps and game jams - as long as there's something genuinely difficult to solve.
-				</p>
-			</motion.div>
+				</div>
+			</div>
 
-			<motion.div
-				initial={{ opacity: 0, y: 24 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.1, duration: 0.5 }}
-			>
-				<Card className="border-violet-500/20">
-					<CardContent className="pt-6">
-						<p className="text-xs font-semibold uppercase tracking-widest text-violet-300 mb-4">
-							Skills & Tools
-						</p>
-						<div className="flex flex-col gap-4">
-							{languageGroups.map((group, groupIndex) => (
-								<motion.div
-									key={group.title}
-									initial={{ opacity: 0, y: 10 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{
-										delay: 0.15 + groupIndex * 0.08,
-										duration: 0.3,
-									}}
-									className="space-y-2"
-								>
-									<div>
-										<p className="text-sm font-semibold text-slate-100">
-											{group.title}
-										</p>
-										<p className="text-xs text-slate-400">
-											{group.description}
-										</p>
+			<div className="flex flex-col gap-4">
+				{languageGroups.map((group) => (
+					<Card key={group.title} className="rounded-none border border-slate-800 bg-[#0d0e15]">
+						<CardContent className="p-4 flex flex-col gap-4">
+							<div>
+								<h3 className="text-xs font-bold text-slate-200">{group.title}</h3>
+								<p className="text-[11px] text-slate-500 mt-0.5">{group.description}</p>
+							</div>
+
+							<div className="grid gap-2 sm:grid-cols-2">
+								{group.skills.map((skill) => (
+									<div
+										key={skill.name}
+										className="flex items-center justify-between p-2 border border-white/5 bg-black/30 text-xs font-mono"
+									>
+										<span className="text-slate-300 font-bold">{skill.name}</span>
+										<span className="text-[10px] text-slate-600 font-medium">{skill.since}</span>
 									</div>
-									<div className="flex flex-wrap gap-2">
-										{group.skills.map((skill, i) => (
-											<motion.div
-												key={skill.name}
-												initial={{ opacity: 0, scale: 0.8 }}
-												animate={{ opacity: 1, scale: 1 }}
-												transition={{
-													delay:
-														0.2 + groupIndex * 0.08 + i * 0.05,
-													duration: 0.25,
-												}}
-												className="inline-flex items-center gap-2"
-											>
-												<Badge>{skill.name}</Badge>
-												<span className="text-xs text-slate-400">
-													{skill.since}
-												</span>
-											</motion.div>
-										))}
-									</div>
-								</motion.div>
-							))}
-						</div>
-					</CardContent>
-				</Card>
-			</motion.div>
-		</motion.section>
+								))}
+							</div>
+						</CardContent>
+					</Card>
+				))}
+			</div>
+		</section>
 	);
 }
 

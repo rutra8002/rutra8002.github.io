@@ -108,6 +108,7 @@ const projectsData: Project[] = [
 		projectType: 'group',
 		media: [
 			{ type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' },
+			{type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' }
 		],
 	},
 	{
@@ -182,55 +183,45 @@ function ProjectsSection() {
 
 	return (
 		<>
-		<motion.section
-			initial={{ opacity: 0, y: 24 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5 }}
-			className="flex flex-col gap-6"
-		>
-			<div className="flex flex-col gap-2">
-				<span className="text-xs font-semibold tracking-widest uppercase text-violet-400">
-					Work
-				</span>
-				<h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
-					Projects
-				</h1>
-			</div>
+			<motion.section
+				initial={{ opacity: 0, y: 12 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.3 }}
+				className="flex flex-col gap-6 font-mono"
+			>
+				<div className="flex flex-col gap-2">
+					<span className="text-xs font-bold tracking-widest text-emerald-500 uppercase">Work</span>
+					<h1 className="text-3xl font-black tracking-tight text-white">Projects</h1>
+				</div>
 
-			<div className="flex flex-wrap gap-2">
-				{(Object.keys(projectTypeMeta) as ProjectType[]).map((key) => {
-					const type = projectTypeMeta[key];
-					const Icon = type.icon;
-					const count = projectsData.filter((p) => p.projectType === key).length;
-					return (
-						<div
-							key={key}
-							className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/50 px-3 py-1 text-xs text-slate-300"
-						>
-							<Icon size={14} className="text-slate-400" />
-							<Badge variant={type.variant} className="cursor-default hover:border-inherit hover:bg-inherit">
-								{type.label}
-							</Badge>
-							<span>{count}</span>
-							<span className="text-slate-500">· {type.description}</span>
-						</div>
-					);
-				})}
-			</div>
+				<div className="flex flex-col gap-2 border border-slate-800 bg-slate-950/40 p-3 text-[11px]">
+					{(Object.keys(projectTypeMeta) as ProjectType[]).map((key) => {
+						const type = projectTypeMeta[key];
+						const Icon = type.icon;
+						const count = projectsData.filter((p) => p.projectType === key).length;
+						return (
+							<div key={key} className="flex items-center justify-between text-slate-400">
+								<div className="flex items-center gap-2">
+									<Icon size={14} className="text-slate-400" />
+									<span className="text-emerald-500 font-bold">{type.label}</span>
+									<span className="text-slate-600">│ {type.description}</span>
+								</div>
+								<span className="text-slate-500 font-bold">Number of projects: {count}</span>
+							</div>
+						);
+					})}
+				</div>
 
-			<div className="relative">
-				<Search
-					size={16}
-					className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"
-				/>
-				<Input
-					type="text"
-					className="pl-9"
-					placeholder="Search by name, tech, description, or type…"
-					value={searchQuery}
-					onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
-				/>
-			</div>
+				<div className="relative">
+					<Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+					<Input
+						type="text"
+						className="pl-9"
+						placeholder="filter queries (e.g., compiler, verilog, python)..."
+						value={searchQuery}
+						onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+					/>
+				</div>
 
 			<motion.div layout className="grid gap-4 sm:grid-cols-2">
 				<AnimatePresence mode="popLayout">
@@ -239,16 +230,16 @@ function ProjectsSection() {
 						const TypeIcon = type.icon;
 						const AchievementIcon = project.achievement?.icon;
 
-						return (
-							<motion.div
-								key={project.title}
-								layout
-								initial={{ opacity: 0, scale: 0.95 }}
-								animate={{ opacity: 1, scale: 1 }}
-								exit={{ opacity: 0, scale: 0.9 }}
-								transition={{ delay: i * 0.05, duration: 0.3 }}
-								className={project.featured ? 'sm:col-span-2' : ''}
-							>
+							return (
+								<motion.div
+									key={project.title}
+									layout
+									initial={{ opacity: 0, scale: 0.98 }}
+									animate={{ opacity: 1, scale: 1 }}
+									exit={{ opacity: 0, scale: 0.95 }}
+									transition={{ delay: i * 0.02, duration: 0.2 }}
+									className={project.featured ? 'sm:col-span-2' : ''}
+								>
 									<Card
 										tabIndex={0}
 										role="button"
@@ -260,50 +251,43 @@ function ProjectsSection() {
 												openDialog(project, e.currentTarget);
 											}
 										}}
-										className={`h-full p-5 flex flex-col gap-3 border-white/10 hover:border-violet-500/40 hover:-translate-y-1 hover:shadow-violet-900/30 hover:shadow-xl transition-all duration-200 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60 ${
-											project.featured ? 'border-violet-500/25 bg-violet-950/10' : ''
+										className={`h-full p-4 rounded-none border flex flex-col gap-3 transition-all duration-150 cursor-pointer group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-500/50 ${
+											project.featured
+												? 'border-emerald-500/20 bg-emerald-950/5 hover:border-emerald-500/40'
+												: 'border-slate-800 bg-[#0d0e15] hover:border-slate-600'
 										}`}>
 										<div className="flex items-start justify-between gap-2">
-											<div className="flex flex-col gap-2">
+											<div className="flex flex-col gap-1.5">
 												<div className="flex items-center gap-2">
-													{project.featured && (
-														<Cpu size={14} className="text-violet-400" />
-													)}
-													<span className="text-base font-semibold text-slate-100 group-hover:text-violet-300 transition-colors">
+													{project.featured && <Cpu size={12} className="text-emerald-400 shrink-0" />}
+													<span className="text-sm font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
 														{project.title}
 													</span>
 												</div>
-												<div className="flex items-center gap-2 text-xs text-slate-400">
-													<TypeIcon size={14} />
-													<Badge variant={type.variant} className="cursor-default hover:border-inherit hover:bg-inherit">
-														{type.label}
-													</Badge>
-												</div>
+												<Badge variant={type.variant} className="w-fit pointer-events-none">
+													<TypeIcon size={12} />
+													{type.label}
+												</Badge>
 											</div>
-											<ExternalLink
-												size={14}
-												className="text-slate-600 group-hover:text-violet-400 transition-colors shrink-0 mt-1"
-												aria-hidden="true"
-											/>
+											<ExternalLink size={12} className="text-slate-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-0.5" aria-hidden="true" />
 										</div>
-										<p className="text-sm text-slate-400 leading-relaxed flex-1 line-clamp-3">
+										<p className="text-xs text-slate-400 leading-relaxed flex-1 line-clamp-3 font-mono">
 											{project.description}
 										</p>
+
 										{project.achievement && AchievementIcon && (
-											<div className="flex items-center gap-1.5">
-												<AchievementIcon size={13} className={project.achievement.color} />
-												<span className={`text-xs font-medium ${project.achievement.color}`}>
-													{project.achievement.label}
-												</span>
+											<div className="flex items-center gap-1.5 text-[11px] border border-emerald-500/10 bg-emerald-950/20 px-2 py-1">
+												<AchievementIcon size={12} className={project.achievement.color} />
+												<span className={`font-semibold ${project.achievement.color}`}>{project.achievement.label}</span>
 											</div>
 										)}
-										<div className="flex flex-wrap gap-1.5">
+
+										<div className="flex flex-wrap gap-1 pt-1 border-t border-white/5">
 											{project.tags.map((tag) => (
 												<Badge
 													key={tag}
-																variant="default"
-																className=""
-																onClick={(e: MouseEvent<HTMLSpanElement>) => {
+													variant="default"
+													onClick={(e: MouseEvent<HTMLSpanElement>) => {
 														e.stopPropagation();
 														setSearchQuery(tag);
 													}}
@@ -313,18 +297,18 @@ function ProjectsSection() {
 											))}
 										</div>
 									</Card>
-							</motion.div>
-						);
-					})}
-				</AnimatePresence>
-			</motion.div>
+								</motion.div>
+							);
+						})}
+					</AnimatePresence>
+				</motion.div>
 
-			{filtered.length === 0 && (
-				<p className="text-center text-slate-500 py-12">
-					No projects match your search.
-				</p>
-			)}
-		</motion.section>
+				{filtered.length === 0 && (
+					<p className="text-center text-xs text-slate-600 border border-dashed border-slate-800 py-12">
+						No projects match your search.
+					</p>
+				)}
+			</motion.section>
 
 			<ProjectDialog
 				project={activeProject}

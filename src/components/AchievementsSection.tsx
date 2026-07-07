@@ -100,46 +100,35 @@ const achievements: Achievement[] = [
     }
 ];
 
-const tierConfig: Record<
-    AchievementTier,
-    {
-        border: string;
-        icon: LucideIcon;
-        iconColor: string;
-    }
-> = {
+const tierConfig: Record<AchievementTier, { border: string; icon: LucideIcon; color: string }> = {
     gold: {
-        border: 'border-yellow-500/30 hover:border-yellow-400/50',
+        border: 'border-amber-500/30 bg-amber-950/5 hover:border-amber-400/50',
         icon: Trophy,
-        iconColor: 'text-yellow-400',
+        color: 'text-amber-400',
     },
     silver: {
-        border: 'border-slate-400/20 hover:border-slate-300/40',
+        border: 'border-slate-700 bg-slate-900/20 hover:border-slate-500',
         icon: Flag,
-        iconColor: 'text-slate-400',
+        color: 'text-slate-400',
     },
     bronze: {
-        border: 'border-orange-500/20 hover:border-orange-400/40',
+        border: 'border-orange-900/40 bg-orange-950/5 hover:border-orange-800',
         icon: Medal,
-        iconColor: 'text-orange-400',
+        color: 'text-orange-500',
     },
 };
 
 function AchievementsSection() {
     return (
         <motion.section
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col gap-6"
+            transition={{ duration: 0.3 }}
+            className="flex flex-col gap-6 font-mono"
         >
             <div className="flex flex-col gap-2">
-				<span className="text-xs font-semibold tracking-widest uppercase text-violet-400">
-					Recognition
-				</span>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-400 to-purple-300 bg-clip-text text-transparent">
-                    Achievements
-                </h1>
+                <span className="text-xs font-bold tracking-widest text-emerald-500">Recognition</span>
+                <h1 className="text-3xl font-black text-white tracking-tight">Achievements</h1>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -150,45 +139,30 @@ function AchievementsSection() {
                     return (
                         <motion.div
                             key={item.event + item.year}
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: i * 0.06, duration: 0.35 }}
+                            transition={{ delay: i * 0.03, duration: 0.2 }}
                         >
-                            <a
-                                href={item.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block h-full"
-                            >
-                                <Card
-                                    className={`h-full p-5 flex flex-col gap-3 border transition-all duration-200 hover:-translate-y-1 hover:shadow-lg cursor-pointer group ${tier.border}`}
-                                >
+                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                                <Card className={`h-full p-4 rounded-none border flex flex-col gap-3 transition-all duration-150 cursor-pointer group ${tier.border}`}>
                                     <div className="flex items-start justify-between gap-2">
                                         <div className="flex flex-col gap-1">
-                                            <div className="flex items-center gap-2">
-                                                <TierIcon size={15} className={tier.iconColor} />
-                                                <span className="text-sm font-bold text-slate-100 group-hover:text-violet-300 transition-colors">
-													{item.placement}
-												</span>
+                                            <div className="flex items-center gap-1.5 text-xs">
+                                                <TierIcon size={12} className={tier.color} />
+                                                <span className={`font-black ${tier.color}`}>{item.placement}</span>
                                             </div>
-                                            <span className="text-base font-semibold text-slate-200">
-												{item.event}
-											</span>
-                                            <span className="text-xs text-slate-500">
-												{item.organizer} · {item.year}
-											</span>
+                                            <span className="text-sm font-bold text-slate-200 mt-1">{item.event}</span>
+                                            <span className="text-[10px] text-slate-500 font-bold">{item.organizer} {item.year}</span>
                                         </div>
-                                        <ExternalLink
-                                            size={14}
-                                            className="text-slate-600 group-hover:text-violet-400 transition-colors shrink-0 mt-1"
-                                        />
+                                        <ExternalLink size={12} className="text-slate-600 group-hover:text-emerald-400 transition-colors shrink-0 mt-0.5" />
                                     </div>
-                                    <p className="text-sm text-slate-400 leading-relaxed flex-1">
-                                        {item.description}
-                                    </p>
-                                    <div className="flex flex-wrap gap-1.5">
+
+                                    <p className="text-xs text-slate-400 leading-relaxed flex-1 font-mono">{item.description}</p>
+
+                                    {/* UI SYSTEM BADGES USED HERE */}
+                                    <div className="flex flex-wrap gap-1 pt-2 border-t border-white/5">
                                         {item.tags.map((tag) => (
-                                            <Badge key={tag} variant="default" className="">
+                                            <Badge key={tag} variant="default" className="cursor-default border-white/5 bg-black/20 text-slate-500 hover:border-white/10 hover:text-slate-400">
                                                 {tag}
                                             </Badge>
                                         ))}
