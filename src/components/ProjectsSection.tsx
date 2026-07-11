@@ -104,6 +104,10 @@ const projectsData: Project[] = [
 		achievement: { icon: Medal, color: 'text-orange-400', label: '7th place · Motorola Science Cup 2024' },
 		media: [
 			{ type: 'video', src: 'https://www.youtube.com/embed/oRm5Wtt9y7Y', caption: 'Demo video (YouTube)' },
+			{ type: "image", src: '/images/optyka/20.png', caption: 'Main Menu' },
+			{ type: 'image', src: '/images/optyka/21.png', caption: 'Showcase of lenses' },
+			{ type: 'image', src: '/images/optyka/22.png', caption: 'Showcase of Prism and achievement' },
+			{ type: 'image', src: '/images/optyka/23.png', caption: 'Showcase of mirrors' },
 		],
 	},
 	{
@@ -134,7 +138,12 @@ const projectsData: Project[] = [
 		link: 'https://github.com/MalyszekTobias/NukeTown',
 		tags: ['Python', 'Raylib', 'GLSL'],
 		projectType: 'group',
-		media: [],
+		media: [
+			{ type: 'image', src: '/images/nuketown/16.png', caption: 'Start Screen' },
+			{ type: 'image', src: '/images/nuketown/17.png', caption: 'Uranium in empty room' },
+			{ type: 'image', src: '/images/nuketown/18.png', caption: 'Inventory system' },
+			{ type: 'image', src: '/images/nuketown/19.png', caption: 'One of many books explaining the lore' },
+		],
 	},
 ];
 
