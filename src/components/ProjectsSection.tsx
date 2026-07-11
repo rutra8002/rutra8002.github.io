@@ -27,7 +27,9 @@ const projectsData: Project[] = [
 		tags: ['Verilog', 'Python', 'ASM', 'Compiler', 'HDL'],
 		projectType: 'personal',
 		featured: true,
-		media: [],
+		media: [
+			{ type: 'image', src: '/images/rutracpu/CPU.png', caption: 'RutraCPU Screenshot' }
+		],
 	},
 	{
 		title: 'RutraOS',
@@ -37,7 +39,11 @@ const projectsData: Project[] = [
 		tags: ['C', 'x86 Assembly', 'OS'],
 		projectType: 'personal',
 		featured: true,
-		media: [],
+		media: [
+			{ type: 'image', src: '/images/rutraos/1.png', caption: 'RutraOS Memtest Screenshot' },
+			{ type: 'image', src: '/images/rutraos/2.png', caption: 'Platformer Screenshot' },
+			{ type: 'image', src: '/images/rutraos/3.png', caption: 'Doom Screenshot' }
+		],
 	},
 	{
 		title: 'Quiz App',
@@ -63,7 +69,12 @@ const projectsData: Project[] = [
 		link: 'https://github.com/rutra8002/jeff_the_grappler',
 		tags: ['Python', 'Raylib', 'GLSL'],
 		projectType: 'personal',
-		media: [],
+		media: [
+			{ type: 'image', src: '/images/jeff/4.png', caption: 'Jeff in the tunnel' },
+			{ type: 'image', src: '/images/jeff/5.png', caption: 'Jeff fights' },
+			{ type: 'image', src: '/images/jeff/6.png', caption: 'Jeff shows domination' },
+			{ type: 'image', src: '/images/jeff/7.png', caption: 'Jeff uses his grappling gun' },
+		],
 	},
 	{
 		title: 'Pixel Racers',
@@ -75,6 +86,12 @@ const projectsData: Project[] = [
 		achievement: { icon: Trophy, color: 'text-yellow-400', label: '2nd place · Motorola Science Cup 2025' },
 		media: [
 			{ type: 'video', src: 'https://www.youtube.com/embed/9RUm_Z_BEGM', caption: 'Gameplay demo (YouTube)' },
+			{ type: 'image', src: '/images/pixelracers/24.png', caption: 'Main Menu' },
+			{ type: 'image', src: '/images/pixelracers/25.png', caption: 'Select a vehicle menu + terminal' },
+			{ type: "image", src: '/images/pixelracers/26.png', caption: 'Gameplay screenshot' },
+			{ type: "image", src: '/images/pixelracers/27.png', caption: 'Victory screen\'' },
+			{ type: "image", src: '/images/pixelracers/28.png', caption: 'Leaderboard' },
+			{ type: "image", src: '/images/pixelracers/29.png', caption: 'Map editor' },
 		],
 	},
 	{
@@ -107,8 +124,7 @@ const projectsData: Project[] = [
 		tags: ['Python', 'Pygame'],
 		projectType: 'group',
 		media: [
-			{ type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' },
-			{type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' }
+			{ type: 'image', src: 'https://github.com/V8Enthusiast/StormSurvival/raw/main/Screenshot/1.png', caption: 'Storm Survival screenshot' }
 		],
 	},
 	{
