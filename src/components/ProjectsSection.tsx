@@ -89,7 +89,7 @@ const projectsData: Project[] = [
 			{ type: 'image', src: '/images/pixelracers/24.png', caption: 'Main Menu' },
 			{ type: 'image', src: '/images/pixelracers/25.png', caption: 'Select a vehicle menu + terminal' },
 			{ type: "image", src: '/images/pixelracers/26.png', caption: 'Gameplay screenshot' },
-			{ type: "image", src: '/images/pixelracers/27.png', caption: 'Victory screen\'' },
+			{ type: "image", src: '/images/pixelracers/27.png', caption: 'Victory screen' },
 			{ type: "image", src: '/images/pixelracers/28.png', caption: 'Leaderboard' },
 			{ type: "image", src: '/images/pixelracers/29.png', caption: 'Map editor' },
 		],
