@@ -1,8 +1,8 @@
-import * as React from 'react';
+import type { IconType } from 'react-icons';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 export type Contact = {
-    icon: React.ComponentType<any>;
+    icon: IconType;
     label: string;
     display: string;
     href: string;
