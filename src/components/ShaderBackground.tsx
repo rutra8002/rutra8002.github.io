@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const VERTEX_SRC = `
 attribute vec2 aPosition;
@@ -81,22 +81,30 @@ function compileShader(gl: WebGLRenderingContext, type: number, source: string):
     return shader;
 }
 
+const initializedCanvases = new WeakSet<HTMLCanvasElement>();
+
 interface ShaderBackgroundProps {
     className?: string;
 }
 
 export default function ShaderBackground({ className }: ShaderBackgroundProps) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const [ready, setReady] = useState(false);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+        if (initializedCanvases.has(canvas)) return;
+        initializedCanvases.add(canvas);
 
         const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
         if (!gl) {
             console.warn('WebGL not supported; shader background disabled.');
+            initializedCanvases.delete(canvas);
             return;
         }
+
+        const parallelExt = gl.getExtension('KHR_parallel_shader_compile');
 
         const vertexShader = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SRC);
         const fragmentShader = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SRC);
@@ -107,24 +115,11 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
         gl.attachShader(program, fragmentShader);
         gl.linkProgram(program);
 
-        gl.useProgram(program);
-
-        const positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.bufferData(
-            gl.ARRAY_BUFFER,
-            new Float32Array([-1, -1, 3, -1, -1, 3]),
-            gl.STATIC_DRAW
-        );
-
-        const aPosition = gl.getAttribLocation(program, 'aPosition');
-        gl.enableVertexAttribArray(aPosition);
-        gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
-
-        const uTime = gl.getUniformLocation(program, 'time');
-        const uResolution = gl.getUniformLocation(program, 'resolution');
-
-        let animationFrame: number;
+        let cancelled = false;
+        let animationFrame = 0;
+        let positionBuffer: WebGLBuffer | null = null;
+        let uTime: WebGLUniformLocation | null = null;
+        let uResolution: WebGLUniformLocation | null = null;
         const startTime = performance.now();
 
         const resize = () => {
@@ -138,26 +133,69 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
             }
         };
 
+        resize();
+        window.addEventListener('resize', resize);
+
         const render = () => {
             const elapsed = (performance.now() - startTime) / 1000;
             gl.uniform1f(uTime, elapsed);
             gl.uniform2f(uResolution, canvas.width, canvas.height);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
+            if (!cancelled) setReady(true);
             animationFrame = requestAnimationFrame(render);
         };
 
-        resize();
-        render();
+        const finishSetup = () => {
+            if (cancelled) return;
 
-        window.addEventListener('resize', resize);
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                console.warn('Shader program failed to link:', gl.getProgramInfoLog(program));
+                return;
+            }
+
+            gl.useProgram(program);
+
+            positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            gl.bufferData(
+                gl.ARRAY_BUFFER,
+                new Float32Array([-1, -1, 3, -1, -1, 3]),
+                gl.STATIC_DRAW
+            );
+
+            const aPosition = gl.getAttribLocation(program, 'aPosition');
+            gl.enableVertexAttribArray(aPosition);
+            gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+            uTime = gl.getUniformLocation(program, 'time');
+            uResolution = gl.getUniformLocation(program, 'resolution');
+
+            render();
+        };
+
+        if (parallelExt) {
+            const checkStatus = () => {
+                if (cancelled) return;
+                if (gl.getProgramParameter(program, parallelExt.COMPLETION_STATUS_KHR)) {
+                    finishSetup();
+                } else {
+                    requestAnimationFrame(checkStatus);
+                }
+            };
+            checkStatus();
+        } else {
+            finishSetup();
+        }
 
         return () => {
+            cancelled = true;
             window.removeEventListener('resize', resize);
             cancelAnimationFrame(animationFrame);
             gl.deleteProgram(program);
             gl.deleteShader(vertexShader);
             gl.deleteShader(fragmentShader);
-            gl.deleteBuffer(positionBuffer);
+            if (positionBuffer) gl.deleteBuffer(positionBuffer);
+            initializedCanvases.delete(canvas);
         };
     }, []);
 
@@ -165,6 +203,7 @@ export default function ShaderBackground({ className }: ShaderBackgroundProps) {
         <canvas
             ref={canvasRef}
             className={className ?? 'fixed inset-0 -z-20 w-full h-full'}
+            style={{ opacity: ready ? 1 : 0, transition: 'opacity 400ms ease-out' }}
         />
     );
 }
