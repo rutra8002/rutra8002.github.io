@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, ChevronLeft, ChevronRight, Users, User, Cpu } from 'lucide-react';
+import { X, ExternalLink, ChevronLeft, ChevronRight, Users, User, Cpu, Github, Code2 } from 'lucide-react';
 
 type ProjectType = 'personal' | 'group';
 
@@ -20,6 +20,8 @@ export type Project = {
     title: string;
     description: string;
     link: string;
+    demoLink?: string;
+    demoLabel?: string;
     tags: string[];
     projectType: ProjectType;
     featured?: boolean;
@@ -261,15 +263,29 @@ export default function ProjectDialog({
                                         ))}
                                     </div>
 
-                                    <a
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="mt-4 inline-flex items-center gap-2 self-start px-3 py-1.5 border border-emerald-500/30 bg-emerald-950/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 hover:border-emerald-400 transition-all rounded-none"
-                                    >
-                                        Source Code
-                                        <ExternalLink size={11} />
-                                    </a>
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        <a
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 self-start px-3 py-1.5 border border-emerald-500/30 bg-emerald-950/10 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 hover:border-emerald-400 transition-all rounded-none"
+                                        >
+                                            <Code2 size={11} />
+                                            Source Code
+                                        </a>
+
+                                        {project.demoLink && (
+                                            <a
+                                                href={project.demoLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-2 self-start px-3 py-1.5 border border-slate-700 bg-slate-900/40 text-slate-200 text-xs font-bold hover:bg-slate-800/60 hover:border-slate-500 transition-all rounded-none"
+                                            >
+                                                {project.demoLabel ?? 'Live Demo'}
+                                                <ExternalLink size={11} />
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -33,6 +33,8 @@ export const projectsData: Project[] = [
         description:
             'A full-stack quiz application with user authentication, SQLite backend, and AI-powered answer validation via the Gemini API. Deployed on a Raspberry Pi with Flask.',
         link: 'https://github.com/rutra8002/quizapp',
+        demoLink: 'https://quiz.rutra.me',
+        demoLabel: 'Try it Live',
         tags: ['Python', 'Flask', 'HTML', 'Tailwind', 'SQLite', 'AI'],
         projectType: 'personal',
         media: [],
@@ -64,6 +66,8 @@ export const projectsData: Project[] = [
         description:
             'Top-down pixel racing game with AI bots. Built as a team for Motorola Science Cup 2025 - 2nd place nationally.',
         link: 'https://github.com/rutra8002/pixel_racers',
+        demoLink: 'https://rutra8002.itch.io/pixel-racers',
+        demoLabel: 'Play on itch.io',
         tags: ['Python', 'Pygame'],
         projectType: 'group',
         achievement: { icon: Trophy, color: 'text-yellow-400', label: '2nd place · Motorola Science Cup 2025' },
@@ -107,6 +111,10 @@ export const projectsData: Project[] = [
             'A game built during the Brackeys Game Jam - shipped in one week from idea to playable prototype.',
         detail:
             'Storm Survival is a realistic real-time apocalypse survival game. Gather resources, fight enemies and loot for weapons. Get stronger every day and with every wave of enemies. Explore the open world and enjoy the cutting edge pixel art graphics our graphic design team prepared.',
+
+        demoLabel: 'Play on itch.io',
+        demoLink: "https://rutra8002.itch.io/storm-survival",
+
         link: 'https://github.com/V8Enthusiast/StormSurvival',
         tags: ['Python', 'Pygame'],
         projectType: 'group',
