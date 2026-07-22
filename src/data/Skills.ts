@@ -61,6 +61,7 @@ export const languageGroups: LanguageGroup[] = [
             { name: "Gemini API", since: "since 2024" },
             { name: "OpenAI API", since: "since 2023" },
             { name: "Prompt Engineering", since: "since 2024" },
+            { name: "Claude Code", since: "since 2026" },
         ],
     },
 ];
