@@ -31,9 +31,16 @@ export const languageGroups: LanguageGroup[] = [
             { name: "React", since: "since 2025" },
             { name: "Flask", since: "since 2023" },
             { name: "Tailwind", since: "since 2024" },
-            { name: "Pygame", since: "since 2022" },
-            { name: "Raylib", since: "since 2024" },
             { name: "GLSL", since: "since 2025" },
+        ],
+    },
+    {
+        title: "Game Development",
+        description: "Tools used for GameDev",
+        skills: [
+            { name: "Godot", since: "since 2026" },
+            { name: "Raylib", since: "since 2024" },
+            { name: "PyGame", since: "since 2022" },
         ],
     },
     {
