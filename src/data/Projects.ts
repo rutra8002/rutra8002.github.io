@@ -29,6 +29,18 @@ export const projectsData: Project[] = [
         ],
     },
     {
+        title: 'Doodle Arcade',
+        description: 'A game collection of 3 minigames built during GMTK Jam',
+        demoLink: 'https://rutra8002.itch.io/doodle-arcade',
+        demoLabel: 'Play on itch.io',
+        link: 'https://github.com/Saniccxx/gmtk-jam',
+        projectType: 'group',
+        tags: ['Godot'],
+        media: [
+            { type: 'image', src: '/images/doodle/Title.png', caption: 'Doodle Arcade Cover Image' }
+        ]
+    },
+    {
         title: 'Quiz App',
         description:
             'A full-stack quiz application with user authentication, SQLite backend, and AI-powered answer validation via the Gemini API. Deployed on a Raspberry Pi with Flask.',
