@@ -55,9 +55,12 @@ export const projectsData: Project[] = [
         title: 'Portfolio Website',
         description: 'This site. A modern, animated portfolio built with React, Tailwind, and Framer Motion.',
         link: 'https://github.com/rutra8002/rutra8002.github.io',
-        tags: ['React', 'CSS', 'JavaScript', 'TypeScript'],
+        tags: ['React', 'CSS', 'TypeScript'],
         projectType: 'personal',
-        media: [],
+        media: [
+            { type: 'image', src: '/images/portfolio/portfolio1.png', caption: 'About me section' },
+            { type: 'image', src: '/images/portfolio/portfolio2.png', caption: 'Projects section' },
+        ],
     },
     {
         title: 'Jeff The Grappler',

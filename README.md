@@ -10,7 +10,11 @@ Live: [rutra.me](https://rutra.me)
 - **Projects** - Browse projects with live demos and source code
 - **Achievements** - Competition results and awards
 - **Contact** - Links to email, LinkedIn, GitHub
+- **Terminal** - A terminal-like interface to navigate the portfolio
 
+## Screenshots
+![portfolio1.png](public/images/portfolio/portfolio1.png)
+![portfolio2.png](public/images/portfolio/portfolio2.png)
 ## Tech Stack
 
 - [React](https://react.dev/)
