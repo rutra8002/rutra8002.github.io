@@ -41,6 +41,13 @@ export const projectsData: Project[] = [
         ]
     },
     {
+      title: 'Rchessengine',
+      description: "A chess engine",
+      link: 'https://github.com/rutra8002/rchessengine',
+      tags: ['Rust'],
+      projectType: 'personal'
+    },
+    {
         title: 'Quiz App',
         description:
             'A full-stack quiz application with user authentication, SQLite backend, and AI-powered answer validation via the Gemini API. Deployed on a Raspberry Pi with Flask.',
