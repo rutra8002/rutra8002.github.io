@@ -87,7 +87,6 @@ function ProjectsSection() {
 				className="flex flex-col gap-6 font-mono"
 			>
 				<div className="flex flex-col gap-2">
-					<span className="text-xs font-bold tracking-widest text-emerald-500 uppercase">Work</span>
 					<h1 className="text-3xl font-black tracking-tight text-white">Projects</h1>
 				</div>
 
