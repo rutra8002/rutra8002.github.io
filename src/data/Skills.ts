@@ -22,6 +22,7 @@ export const languageGroups: LanguageGroup[] = [
             { name: "x86 Assembly", since: "since 2024" },
             { name: "Verilog", since: "since 2025" },
             { name: "C++", since: "since 2026" },
+            { name: "Rust", since: "since 2026" }
         ],
     },
     {
