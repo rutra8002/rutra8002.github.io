@@ -13,9 +13,6 @@ const ContactsSection: React.FC = () => {
           className="flex flex-col gap-6 font-mono"
       >
         <div className="flex flex-col gap-2">
-        <span className="text-xs font-bold tracking-widest text-emerald-500">
-          Get in Touch
-        </span>
           <h1 className="text-3xl font-black text-white tracking-tight">
             Contacts
           </h1>
