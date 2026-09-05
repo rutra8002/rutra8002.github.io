@@ -41,11 +41,13 @@ export const projectsData: Project[] = [
         ]
     },
     {
-      title: 'Rchessengine',
-      description: "A chess engine",
-      link: 'https://github.com/rutra8002/rchessengine',
-      tags: ['Rust'],
-      projectType: 'personal'
+        title: 'Rchessengine',
+        description: "A chess engine",
+        link: 'https://github.com/rutra8002/rchessengine',
+        demoLink: 'https://lichess.org/@/rchessengine',
+        demoLabel: 'Try it Live',
+        tags: ['Rust'],
+        projectType: 'personal'
     },
     {
         title: 'Quiz App',
